@@ -9,7 +9,7 @@ export default function Hero() {
       <Image
         src={DecoTop}
         alt=""
-        className="absolute -top-[1px] left-0 max-w-[420px] w-[33%] min-w-[300px]"
+        className="absolute top-[72px] xl:top-[97px] left-0 max-w-[420px] w-[33%] min-w-[300px]"
       />
       <Image
         src={DecoBot}
