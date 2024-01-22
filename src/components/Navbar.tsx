@@ -13,7 +13,7 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <nav className="flex justify-between items-center w-full py-5 px-[5%] sm:px-[40px] md:px-[56px] bg-dark font-poppins">
+    <nav className="flex justify-between items-center w-full py-5 px-[5%] sm:px-[40px] md:px-[56px] bg-dark font-poppins text-neutral-1">
       <Link href="/">
         <Image src={Logo} alt="Logo" className="w-[40px] xl:w-[66px]" />
       </Link>
