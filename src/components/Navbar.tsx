@@ -43,7 +43,7 @@ export default function Navbar() {
 
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="sm:hidden w-[30px] flex flex-col gap-1.5 justify-center items-start relative z-[1]"
+        className="sm:hidden w-[30px] flex flex-col gap-1.5 justify-center items-start relative z-[10]"
       >
         <div
           className={`bg-white h-[3px] rounded-full transition-[width] duration-200 ${
@@ -68,8 +68,8 @@ export default function Navbar() {
       </button>
 
       <div
-        className={`fixed top-0 right-0 pt-[100px] px-[50px] bg-dark h-screen transition duration-200 shadow-[0_0_5px_#D62340] sm:hidden ${
-          isMenuOpen ? "translate-x-0" : "translate-x-[calc(100%+10px)]"
+        className={`fixed top-0 right-0 pt-[100px] px-[50px] bg-dark h-screen transition duration-200 shadow-[0_0_5px_#D62340] sm:hidden z-[9] ${
+          isMenuOpen ? "translate-x-[1px]" : "translate-x-[calc(100%+10px)]"
         }`}
       >
         <div className="flex flex-col gap-5 justify-center items-center">
