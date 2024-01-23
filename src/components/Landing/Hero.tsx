@@ -14,7 +14,7 @@ export default function Hero() {
       <Image
         src={DecoBot}
         alt=""
-        className="absolute bottom-0 right-0 max-w-[420px] w-[33%] min-w-[300px]"
+        className="absolute bottom-0 right-0 max-w-[420px] w-[33%] min-w-[300px] translate-y-[50%] z-[1]"
       />
       <div className="relative flex justify-center items-center max-w-[1000px] min-w-[300px] w-[66%]">
         <Image
@@ -22,7 +22,7 @@ export default function Hero() {
           alt=""
           className="w-full"
         />
-        <div className="bg-dark absolute top-[calc(100%+7px)] left-0 text-neutral-1 px-[34px] py-3 rounded-[25px] rounded-bl-[37px] rounded-tl-[0px]">
+        <div className="bg-dark-2 font-semibold absolute top-[calc(100%+7px)] left-0 text-neutral-1 px-[34px] py-3 rounded-[25px] rounded-bl-[37px] rounded-tl-[0px]">
           Are you ready to login?
         </div>
       </div>

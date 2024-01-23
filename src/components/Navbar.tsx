@@ -13,7 +13,7 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <nav className="flex justify-between items-center fixed top-0 w-full py-5 px-[5%] sm:px-[40px] md:px-[56px] bg-dark font-poppins text-neutral-1 z-[1]">
+    <nav className="flex justify-between items-center fixed top-0 w-full py-5 px-[5%] sm:px-[40px] md:px-[56px] bg-dark-2 font-poppins text-neutral-1 z-[10]">
       <Link href="/">
         <Image src={Logo} alt="Logo" className="w-[40px] xl:w-[66px]" />
       </Link>
@@ -68,7 +68,7 @@ export default function Navbar() {
       </button>
 
       <div
-        className={`fixed top-0 right-0 pt-[100px] px-[50px] bg-dark h-screen transition duration-200 shadow-[0_0_5px_#D62340] sm:hidden z-[9] ${
+        className={`fixed top-0 right-0 pt-[100px] px-[50px] bg-dark-2 h-screen transition duration-200 shadow-[0_0_5px_#D62340] sm:hidden z-[9] ${
           isMenuOpen ? "translate-x-[1px]" : "translate-x-[calc(100%+10px)]"
         }`}
       >
