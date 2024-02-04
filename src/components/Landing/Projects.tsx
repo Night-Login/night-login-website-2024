@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
+import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   return (
@@ -18,8 +19,8 @@ export default function Projects() {
         />
       </section>
 
-      <section className="h-[400px] w-[80vw] bg-dark-1 mt-[55px]">
-
+      <section className="h-[400px] w-[80vw] bg-dark-1/20 mt-[55px]">
+        <ProjectCard image="" title="Find IT! 2023" description="I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed." />
       </section>
     </main>
   );
