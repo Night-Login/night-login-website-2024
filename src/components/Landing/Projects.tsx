@@ -1,8 +1,35 @@
 import Image from "next/image";
 import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
 import ProjectCard from "./ProjectCard";
+import { useState } from "react";
 
 export default function Projects() {
+  const [projects, setProjects] = useState([
+    {
+      image: "",
+      title: "Find IT! 2023",
+      description: "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "WEBSITE"
+    },
+    {
+      image: "",
+      title: "Technocorner 2023",
+      description: "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "WEBSITE"
+    },
+    {
+      image: "",
+      title: "Paper GenB",
+      description: "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "WEBSITE"
+    },
+    {
+      image: "",
+      title: "Paper GenB",
+      description: "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "WEBSITE"
+    },
+  ]);
   return (
     <main className="min-h-screen flex flex-col justify-center items-center overflow-x-hidden">
       <section className="flex items-end self-end sm:mr-20">
@@ -19,8 +46,18 @@ export default function Projects() {
         />
       </section>
 
-      <section className="h-[400px] w-[80vw] bg-dark-1/20 mt-[55px]">
-        <ProjectCard image="" title="Find IT! 2023" description="I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed." />
+      <section className="h-fit p-10 w-[80vw] bg-dark-1/20 mt-[55px] flex gap-10 overflow-x-auto">
+        {
+          projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              image={project.image}
+              title={project.title}
+              description={project.description}
+              tag={project.tag}
+            />
+          ))
+        }
       </section>
     </main>
   );
