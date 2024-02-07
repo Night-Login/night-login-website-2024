@@ -59,6 +59,7 @@ export default function Projects() {
           ))
         }
       </section>
+      <button className="mx-auto font-semibold">View All &rarr;</button>
     </main>
   );
 }
