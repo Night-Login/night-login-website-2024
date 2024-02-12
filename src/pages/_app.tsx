@@ -4,6 +4,7 @@ import Head from "next/head";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
+import Navbar from "@/components/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <link rel="icon" href="/assets/images/Logo.png" />
     </Head>
     <main className="font-poppins">
+      <Navbar />
       <Component {...pageProps} />
     </main>
     </>
