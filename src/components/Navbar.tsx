@@ -19,10 +19,11 @@ export default function Navbar() {
       </Link>
 
       <div className="hidden sm:flex items-center gap-[52px] font-semibold">
-        <Link href="/" className="relative flex justify-center items-center">
-          Home
-          <div className="w-full h-[3px] bg-red rounded-full absolute top-[100%]"></div>
-        </Link>
+        <MenuLink
+          href="/"
+          active={router.pathname === "/"}
+          title="Home"
+        />
         <MenuLink
           href="/about"
           active={router.pathname === "/about"}
@@ -110,8 +111,8 @@ function MenuLink({ href, active, title }: MenuLinkProps) {
     >
       {title}
       <div
-        className={`h-[3px] bg-red rounded-full absolute top-[100%] transition ${
-          active ? "w-full" : "w-0"
+        className={`h-[3px] w-full bg-red rounded-full absolute top-[100%] transition duration-300 origin-left ${
+          active ? "scale-x-100" : "scale-x-0"
         }`}
       ></div>
     </Link>
