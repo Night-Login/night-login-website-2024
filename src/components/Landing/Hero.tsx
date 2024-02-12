@@ -7,11 +7,13 @@ export default function Hero() {
   return (
     <div className="relative">
       <Image
+        priority
         src={DecoTop}
         alt=""
         className="absolute top-[72px] xl:top-[97px] left-0 max-w-[420px] w-[33%] min-w-[300px]"
       />
       <Image
+        priority
         src={DecoBot}
         alt=""
         className="absolute bottom-0 right-0 max-w-[420px] w-[33%] min-w-[300px] translate-y-[50%] z-[1]"
@@ -19,6 +21,7 @@ export default function Hero() {
     <main className="min-h-screen flex justify-center items-center overflow-x-hidden relative z-[1]">
       <div data-aos="fade-up" className="relative flex justify-center items-center max-w-[1000px] min-w-[300px] w-[66%]">
         <Image
+          priority
           src={HeroMain}
           alt=""
           className="w-full"
