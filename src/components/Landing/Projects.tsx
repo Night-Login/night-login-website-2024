@@ -40,7 +40,7 @@ function Projects() {
     },
   ]);
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center overflow-x-hidden">
+    <main className="min-h-screen flex flex-col justify-center items-center overflow-x-hidden py-20">
       <section className="flex items-end self-end sm:mr-20">
         <div className="relative z-[1]">
           <h2 className="text-[35px] md:text-[40px] font-bold leading-[110%] text-dark-1">

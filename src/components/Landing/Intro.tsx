@@ -7,7 +7,7 @@ import Button from "../Button";
 
 export default function Intro() {
   return (
-    <main className="min-h-screen relative bg-neutral-1 z-0 grid place-items-center overflow-hidden">
+    <main className="min-h-screen relative bg-neutral-1 z-0 grid place-items-center overflow-hidden py-[100px]">
       <div className="flex flex-col sm:flex-row justify-center items-center gap-[30px] lg:gap-[64px] relative z-[1]" data-aos="fade-up">
         
         <div className="!overflow-visible flex justify-center items-center">
@@ -39,7 +39,7 @@ export default function Intro() {
           <Button color="dark" title="READ MORE" className="mt-6"></Button>
         </div>
       </div>
-      <Image src={DecoIntroBot} alt="Deco" className="absolute bottom-0 right-0 w-[200px]" data-aos="fade-up" data-aos-offset="-100" data-aos-delay="400" />
+      <Image src={DecoIntroBot} alt="Deco" className="absolute bottom-0 right-0 w-[150px] md:w-[200px]" data-aos="fade-up" data-aos-offset="-100" data-aos-delay="400" />
     </main>
   );
 }
