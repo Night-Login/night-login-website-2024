@@ -10,3 +10,16 @@
 body {
   background: #FAFAFA;
 }
+
+@keyframes horizontalBounce {
+  from {
+    transform: translateX(-4px);
+  }
+  to {
+    transform: translateX(4px);
+  }
+}
+
+.animate-bounce-x {
+  animation: horizontalBounce 500ms alternate infinite ease-out;
+}

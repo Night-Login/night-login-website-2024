@@ -1,12 +1,14 @@
 import Image from "next/image";
 import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
 import ProjectCard from "./ProjectCard";
+import ArrowR from "@/../../public/assets/images/icons/ArrowRight.png";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import dynamic from "next/dynamic";
 
 function Projects() {
+  const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [projects, setProjects] = useState([
     {
       image: "",
@@ -55,16 +57,15 @@ function Projects() {
         />
       </section>
 
-      <section className="h-fit p-10 w-[80vw] mt-[55px] flex gap-10">
+      <section className="h-fit md:p-10 w-[80vw] mt-[55px] flex">
         <Swiper
-          className="bg-blue-500/20 !w-[490px] !overflow-visible !flex !gap-10 justify-center items-center"
+          className="!w-full !max-w-[450px] !overflow-visible !flex !gap-10 justify-center items-center"
           initialSlide={1}
           grabCursor
+          spaceBetween={40}
         >
           {projects?.map((project, index) => (
-            <SwiperSlide
-              key={index}
-            >
+            <SwiperSlide key={index}>
               <ProjectCard
                 image={project.image}
                 title={project.title}
@@ -75,7 +76,18 @@ function Projects() {
           ))}
         </Swiper>
       </section>
-      <button className="mx-auto font-semibold">View All &rarr;</button>
+      <button
+        className="mx-auto p-5 mt-5 md:mt-0 font-semibold flex items-center gap-5 hover:text-red transition"
+        onMouseEnter={() => setIsBtnHovered(true)}
+        onMouseLeave={() => setIsBtnHovered(false)}
+      >
+        View All{" "}
+        <Image
+          className={isBtnHovered ? "animate-bounce-x" : ""}
+          src={ArrowR}
+          alt=""
+        />
+      </button>
     </main>
   );
 }
