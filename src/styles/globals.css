@@ -23,3 +23,30 @@ body {
 .animate-bounce-x {
   animation: horizontalBounce 500ms alternate infinite ease-out;
 }
+
+@keyframes BladeR {
+  from {
+    transform: scaleX(-1) translateX(-15px);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes BladeL {
+  from {
+    transform: scaleX(-1) translateX(15px);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-blade-r {
+  animation: BladeR 1000ms linear alternate infinite;
+}
+
+.animate-blade-l {
+  animation: BladeL 1000ms linear alternate infinite;
+  animation-delay: 300ms;
+}
