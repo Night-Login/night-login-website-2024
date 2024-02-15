@@ -16,10 +16,10 @@ export default function Solutions() {
           <path
             d="M33 0L99.4217 278H376.595L457 0H33Z"
             fill="url(#paint0_linear_26_3)"
-            fill-opacity="0.5"
+            fillOpacity="0.5"
             className="animate-pulse"
           />
-          <g clip-path="url(#clip0_26_3)">
+          <g clipPath="url(#clip0_26_3)">
             <path
               d="M171.8 299.034C171.256 299.035 170.736 299.251 170.351 299.635C169.967 300.019 169.751 300.54 169.751 301.084V382.974C169.751 383.518 169.967 384.039 170.351 384.423C170.736 384.808 171.256 385.024 171.8 385.025H185.694C186.237 385.024 186.758 384.808 187.142 384.423C187.526 384.039 187.742 383.518 187.743 382.974V301.084C187.742 300.54 187.526 300.019 187.142 299.635C186.758 299.251 186.237 299.035 185.694 299.034H171.8Z"
               fill="#2E2E2E"
@@ -119,13 +119,13 @@ export default function Solutions() {
               y2="281.208"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#D62340" stop-opacity="0" />
+              <stop stopColor="#D62340" stopOpacity="0" />
               <stop
                 offset="0.745013"
-                stop-color="#D62340"
-                stop-opacity="0.265846"
+                stopColor="#D62340"
+                stopOpacity="0.265846"
               />
-              <stop offset="1" stop-color="#D62340" />
+              <stop offset="1" stopColor="#D62340" />
             </linearGradient>
             <clipPath id="clip0_26_3">
               <rect
