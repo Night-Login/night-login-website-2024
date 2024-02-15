@@ -1,17 +1,31 @@
 import Image from "next/image";
-import Drone from "@/../../public/assets/images/Drone.svg";
+import NL from "@/../../public/assets/images/LogoRed.png";
+import NADC from "@/../../public/assets/images/NADC.svg";
+import NCSC from "@/../../public/assets/images/NCSC.svg";
+import NDSC from "@/../../public/assets/images/NDSC.svg";
+import NGDC from "@/../../public/assets/images/NGDC.svg";
+import NHCI from "@/../../public/assets/images/NHCI.svg";
+import NWDC from "@/../../public/assets/images/NWDC.svg";
+import Button from "../Button";
 
 export default function Solutions() {
   return (
-    <main className="min-h-screen flex justify-center">
-      {/* Drone SVG */}
-      <div>
+    <main className="flex justify-center items-start pb-20">
+      <section className="flex h-fit items-end flex-col-reverse lg:flex-row">
+      <div className="flex flex-col gap-[22px] items-center lg:items-start pb-4">
+        <h1 className="font-bold text-[45px] md:text-[64px] max-w-[505px] leading-[100%] text-center lg:text-left">IT Solutions for Your Projects</h1>
+        <p className="font-medium text-[#606060] text-[16px] lg:text-[20px]">Let us transform your ideas into reality</p>
+        <Button title="Request Project Now!" color="red" />
+      </div>
+      <div className="relative flex justify-center">
+        {/* Drone SVG */}
         <svg
           width="471"
           height="386"
           viewBox="0 0 471 386"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="max-w-full"
         >
           <path
             d="M33 0L99.4217 278H376.595L457 0H33Z"
@@ -137,7 +151,22 @@ export default function Solutions() {
             </clipPath>
           </defs>
         </svg>
+
+        <div className="absolute top-[40px] flex flex-col items-center gap-[13.5px]">
+          <div className="flex gap-[16.25px]">
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[50px] md:w-[62.5px] h-auto" src={NWDC} alt="Logo NWDC" />
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[55px] md:w-[68px] h-auto" src={NL} alt="Logo NL" />
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[50px] md:w-[62.5px] h-auto" src={NHCI} alt="Logo NHCI" />
+          </div>
+          <div className="flex gap-[16.25px]">
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[50px] md:w-[62.5px] h-auto" src={NCSC} alt="Logo NL" />
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[50px] md:w-[62.5px] h-auto" src={NADC} alt="Logo NL" />
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[50px] md:w-[62.5px] h-auto" src={NDSC} alt="Logo NL" />
+            <Image className="hover:scale-[1.1] cursor-pointer transition w-[50px] md:w-[62.5px] h-auto" src={NGDC} alt="Logo NL" />
+          </div>
+        </div>
       </div>
+      </section>
     </main>
   );
 }
