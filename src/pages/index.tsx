@@ -10,7 +10,7 @@ export default function Home() {
       <Head>
         <title>Night Login</title>
       </Head>
-      <main className="bg-neutral-1 w-full min-h-screen flex flex-col justify-center">
+      <main className="bg-neutral-1 w-full min-h-screen flex flex-col justify-center overflow-x-hidden">
         <Hero  />
         <Intro />
         <Projects />
