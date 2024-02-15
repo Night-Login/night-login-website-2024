@@ -7,6 +7,16 @@
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  background: #2E2E2E;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D62340;
+  border-radius: 10px 0 10px 0;
+}
+
 body {
   background: #FAFAFA;
 }
