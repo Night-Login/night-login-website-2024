@@ -17,7 +17,7 @@ export default function Button({
       className={`${
         color === "dark"
           ? "bg-gradient-to-b from-dark-1 to-black "
-          : "bg gradient-to-b from-red to-[#B71A34]"
+          : "bg-gradient-to-b from-red to-[#B71A34] "
       } px-[30px] py-[10px] text-white font-bold rounded-full
       transition duration-200 hover:opacity-90
       ${className}
