@@ -7,13 +7,24 @@ import FooterLeft from "@/../../public/assets/images/FooterLeft.svg";
 import FooterMobile from "@/../../public/assets/images/FooterMobile.svg";
 import Image from "next/image";
 
-
 export default function Footer() {
   return (
     <main className="relative">
-      <Image src={FooterRight} className="absolute bottom-[calc(100%-1px)] right-[-1.5px] hidden sm:block" alt="" />
-      <Image src={FooterLeft} className="absolute bottom-[calc(100%-1px)] left-[-1.5px] hidden sm:block" alt="" />
-      <Image src={FooterMobile} className="absolute w-full bottom-[calc(100%-2px)] sm:hidden" alt="" />
+      <Image
+        src={FooterRight}
+        className="absolute bottom-[calc(100%-1px)] right-[-1.5px] hidden sm:block"
+        alt=""
+      />
+      <Image
+        src={FooterLeft}
+        className="absolute bottom-[calc(100%-1px)] left-[-1.5px] hidden sm:block"
+        alt=""
+      />
+      <Image
+        src={FooterMobile}
+        className="absolute w-full bottom-[calc(100%-2px)] sm:hidden"
+        alt=""
+      />
       <section className="bg-dark-2 py-[55px] flex justify-center items-center">
         <div className="flex gap-[14px]">
           <Image src={Logo} alt="Logo" className="w-[60px] h-auto" />
