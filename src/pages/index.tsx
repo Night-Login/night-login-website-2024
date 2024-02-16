@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Hero from "@/components/Landing/Hero";
 import Intro from "@/components/Landing/Intro";
 import Projects from "@/components/Landing/Projects";
@@ -15,6 +16,7 @@ export default function Home() {
         <Intro />
         <Projects />
         <Solutions />
+        <Footer />
       </main>
     </>
   );

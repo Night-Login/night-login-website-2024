@@ -11,9 +11,9 @@ import Button from "../Button";
 export default function Solutions() {
   return (
     <main className="flex justify-center items-start pb-20">
-      <section className="flex h-fit items-end flex-col-reverse lg:flex-row">
+      <section className="flex h-fit items-end flex-col-reverse lg:flex-row pb-[100px]">
         <div className="flex flex-col gap-[22px] items-center lg:items-start pb-4">
-          <h1 className="font-bold text-[45px] md:text-[64px] max-w-[505px] leading-[100%] text-center lg:text-left">
+          <h1 className="font-bold text-[45px] md:text-[64px] max-w-[505px] leading-[100%] text-center lg:text-left mt-5 lg:mt-0">
             IT Solutions for Your Projects
           </h1>
           <p className="font-medium text-[#606060] text-[16px] lg:text-[20px]">
