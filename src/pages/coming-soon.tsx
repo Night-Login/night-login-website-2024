@@ -22,7 +22,7 @@ export default function Hero() {
           data-aos="fade-up"
           className="relative flex justify-start items-center w-fit max-w-full md:max-w-[1000px] min-w-full sm:min-w-[280px] sm:w-[66%]"
         >
-          <h1 className="font-bold text-[64px] md:text-[80px] lg:text-[100px] Fleading-[100%] w-full text-center mt-10">
+          <h1 className="font-bold text-[64px] md:text-[80px] lg:text-[100px] leading-[100%] w-full text-center mt-10">
             COMING <br /> <span className="text-red">SOON</span>
           </h1>
         </div>
