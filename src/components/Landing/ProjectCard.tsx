@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ProjectDeco from "@/../public/assets/images/ProjectDeco.svg";
+import Link from "next/link";
 
 export interface Props {
   image: any;
@@ -39,9 +40,11 @@ export default function ProjectCard({
           className="absolute bottom-0 right-0 w-[120px] md:w-[225px]"
         />
       </div>
-      <button className="absolute bottom-0 left-[22px] translate-y-[35%] bg-red rounded-full px-[25px] py-[10px] font-bold hover:bg-[#BB213A] transition">
-        READ MORE
-      </button>
+      <Link href="/projects">
+        <button className="absolute bottom-0 left-[22px] translate-y-[35%] bg-red rounded-full px-[25px] py-[10px] font-bold hover:bg-[#BB213A] transition">
+          READ MORE
+        </button>
+      </Link>
     </div>
   );
 }
