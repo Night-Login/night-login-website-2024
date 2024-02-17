@@ -27,7 +27,7 @@ export default function ProjectCard({
         />
       </div>
       <div className="px-7 pt-5 pb-[55px] relative">
-        <div className="bg-red rounded-tl-[19px] rounded-br-[19px] absolute top-0 translate-y-[-50%] min-w-[123px] text-center -right-[20px] text-[15px] italic py-0.5 font-semibold">
+        <div className="bg-red rounded-tl-[19px] rounded-br-[19px] absolute top-0 translate-y-[-50%] min-w-[123px] px-5 text-center -right-[20px] text-[15px] italic py-0.5 font-semibold">
           {tag}
         </div>
         <h3 className="text-[24px] font-semibold leading-[100%] mb-2">

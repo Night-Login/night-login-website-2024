@@ -4,6 +4,7 @@ import ProjectCard from "./ProjectCard";
 import ArrowR from "@/../../public/assets/images/icons/ArrowRight.png";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -12,6 +13,9 @@ import Findit from "@/../public/assets/images/projects/FindIT2023.jpg";
 import PaperGenB from "@/../public/assets/images/projects/PaperGenB.jpg";
 import IndustrialWorkshop from "@/../public/assets/images/projects/IndustrialWorkshop2023.jpg";
 import PPSMBKesatria from "@/../public/assets/images/projects/PPSMBKesatria2023.jpg";
+import TwitterSentimentAnalysis from "@/../../public/assets/images/projects/TwitterSentimentAnalysis.jpg";
+import Top500UnivAnalysis from "@/../../public/assets/images/projects/Top500UniAnalysis.jpg";
+import PresidentCandidateTrend from "@/../../public/assets/images/projects/PresidentCandidateTrend.jpg";
 
 function Projects() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
@@ -24,11 +28,25 @@ function Projects() {
       tag: "WEBSITE",
     },
     {
+      image: Top500UnivAnalysis,
+      title: "Top 500 Univ. Analysis",
+      description:
+        "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "DATA ANALYSIS",
+    },
+    {
       image: PaperGenB,
       title: "Paper GenB",
       description:
         "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
       tag: "WEBSITE",
+    },
+    {
+      image: TwitterSentimentAnalysis,
+      title: "Twitter Sentiment Analysis",
+      description:
+        "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "DATA ANALYSIS",
     },
     {
       image: IndustrialWorkshop,
@@ -38,6 +56,13 @@ function Projects() {
       tag: "WEBSITE",
     },
     {
+      image: PresidentCandidateTrend,
+      title: "President Candidate Trend",
+      description:
+        "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "DATA ANALYSIS",
+    },
+    {
       image: PPSMBKesatria,
       title: "PPSMB Kesatria 2023",
       description:
@@ -45,6 +70,7 @@ function Projects() {
       tag: "WEBSITE",
     },
   ]);
+
   return (
     <main className="flex flex-col justify-center items-center overflow-x-hidden pt-20 pb-10 overflow-y-hidden">
       <section className="flex items-end self-end sm:mr-20" data-aos="fade-up">
@@ -72,6 +98,9 @@ function Projects() {
           initialSlide={1}
           grabCursor
           spaceBetween={40}
+          modules={[Mousewheel]}
+          // autoplay={{delay: 2000}}
+          mousewheel
         >
           {projects?.map((project, index) => (
             <SwiperSlide key={index}>
@@ -91,6 +120,7 @@ function Projects() {
           onMouseEnter={() => setIsBtnHovered(true)}
           onMouseLeave={() => setIsBtnHovered(false)}
           data-aos="fade-up"
+          data-aos-offset="-400"
         >
           View All{" "}
           <Image
