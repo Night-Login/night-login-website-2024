@@ -6,34 +6,40 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+
+import Findit from "@/../public/assets/images/projects/FindIT2023.jpg";
+import PaperGenB from "@/../public/assets/images/projects/PaperGenB.jpg";
+import IndustrialWorkshop from "@/../public/assets/images/projects/IndustrialWorkshop2023.jpg";
+import PPSMBKesatria from "@/../public/assets/images/projects/PPSMBKesatria2023.jpg";
 
 function Projects() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [projects, setProjects] = useState([
     {
-      image: "",
+      image: Findit,
       title: "Find IT! 2023",
       description:
         "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
       tag: "WEBSITE",
     },
     {
-      image: "",
-      title: "Technocorner 2023",
-      description:
-        "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
-      tag: "WEBSITE",
-    },
-    {
-      image: "",
+      image: PaperGenB,
       title: "Paper GenB",
       description:
         "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
       tag: "WEBSITE",
     },
     {
-      image: "",
-      title: "Paper GenB",
+      image: IndustrialWorkshop,
+      title: "Industrial Workshop",
+      description:
+        "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
+      tag: "WEBSITE",
+    },
+    {
+      image: PPSMBKesatria,
+      title: "PPSMB Kesatria 2023",
       description:
         "I am someone who enjoys seeking challenges. Here are a few skills that I have developed and honed.",
       tag: "WEBSITE",
@@ -57,7 +63,10 @@ function Projects() {
         />
       </section>
 
-      <section className="h-fit md:p-10 w-[80vw] mt-[55px] flex" data-aos="fade-up">
+      <section
+        className="h-fit md:p-10 w-[80vw] mt-[55px] flex"
+        data-aos="fade-up"
+      >
         <Swiper
           className="!w-full !max-w-[450px] !overflow-visible !flex !gap-10 justify-center items-center"
           initialSlide={1}
@@ -76,19 +85,21 @@ function Projects() {
           ))}
         </Swiper>
       </section>
-      <button
-        className="mx-auto p-5 mt-5 md:mt-0 font-semibold flex items-center gap-5 hover:text-red transition"
-        onMouseEnter={() => setIsBtnHovered(true)}
-        onMouseLeave={() => setIsBtnHovered(false)}
-        data-aos="fade-up"
-      >
-        View All{" "}
-        <Image
-          className={isBtnHovered ? "animate-bounce-x" : ""}
-          src={ArrowR}
-          alt=""
-        />
-      </button>
+      <Link href="/projects">
+        <button
+          className="mx-auto p-5 mt-5 md:mt-0 font-semibold flex items-center gap-5 hover:text-red transition"
+          onMouseEnter={() => setIsBtnHovered(true)}
+          onMouseLeave={() => setIsBtnHovered(false)}
+          data-aos="fade-up"
+        >
+          View All{" "}
+          <Image
+            className={isBtnHovered ? "animate-bounce-x" : ""}
+            src={ArrowR}
+            alt=""
+          />
+        </button>
+      </Link>
     </main>
   );
 }

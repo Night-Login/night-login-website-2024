@@ -4,6 +4,7 @@ import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
 import BgDeco from "../../../public/assets/images/BgDeco.svg";
 import DecoIntroBot from "../../../public/assets/images/DecoIntroBot.svg";
 import Button from "../Button";
+import Link from "next/link";
 
 export default function Intro() {
   return (
@@ -36,7 +37,9 @@ export default function Intro() {
             bidang-bidang IT.
           </p>
 
-          <Button color="dark" title="READ MORE" className="mt-6"></Button>
+          <Link href="/about">
+            <Button color="dark" title="READ MORE" className="mt-6"></Button>
+          </Link>
         </div>
       </div>
       <Image src={DecoIntroBot} alt="Deco" className="absolute bottom-0 right-0 w-[150px] md:w-[200px]" data-aos="fade-up" data-aos-offset="-100" data-aos-delay="400" />
