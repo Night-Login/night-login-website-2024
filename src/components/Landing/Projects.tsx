@@ -40,8 +40,8 @@ function Projects() {
     },
   ]);
   return (
-    <main className="flex flex-col justify-center items-center overflow-x-hidden pt-20 pb-10">
-      <section className="flex items-end self-end sm:mr-20">
+    <main className="flex flex-col justify-center items-center overflow-x-hidden pt-20 pb-10 overflow-y-hidden">
+      <section className="flex items-end self-end sm:mr-20" data-aos="fade-up">
         <div className="relative z-[1]">
           <h2 className="text-[35px] md:text-[40px] font-bold leading-[110%] text-dark-1">
             PROJECTS
@@ -57,7 +57,7 @@ function Projects() {
         />
       </section>
 
-      <section className="h-fit md:p-10 w-[80vw] mt-[55px] flex">
+      <section className="h-fit md:p-10 w-[80vw] mt-[55px] flex" data-aos="fade-up">
         <Swiper
           className="!w-full !max-w-[450px] !overflow-visible !flex !gap-10 justify-center items-center"
           initialSlide={1}
@@ -80,6 +80,7 @@ function Projects() {
         className="mx-auto p-5 mt-5 md:mt-0 font-semibold flex items-center gap-5 hover:text-red transition"
         onMouseEnter={() => setIsBtnHovered(true)}
         onMouseLeave={() => setIsBtnHovered(false)}
+        data-aos="fade-up"
       >
         View All{" "}
         <Image
