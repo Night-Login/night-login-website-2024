@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Solutions() {
   return (
-    <main className="flex justify-center items-start pb-20">
+    <main className="flex justify-center items-start">
       <section className="flex h-fit items-end flex-col-reverse lg:flex-row pb-[100px]">
         <div
           className="flex flex-col gap-[22px] items-center lg:items-start pb-4"
