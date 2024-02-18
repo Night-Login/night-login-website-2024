@@ -2,7 +2,7 @@ import Image from "next/image";
 import DecoTop from "@/../public/assets/images/DecoTop.svg";
 import DecoBot from "@/../public/assets/images/DecoBot.svg";
 
-export default function Hero() {
+export default function ComingSoon() {
   return (
     <div className="relative overflow-y-hidden">
       <Image
