@@ -1,5 +1,7 @@
 import Image from "next/image";
 import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export default function Testimony() {
   return (
@@ -23,6 +25,23 @@ export default function Testimony() {
         <h1 className="font-bold text-[45px] w-fit md:text-[64px] max-w-[505px] leading-[100%] text-center lg:text-left mt-5 lg:mt-0">
           TESTIMONIALS
         </h1>
+      </section>
+
+      <section>
+        <Swiper
+          className="w-[150px] !flex justify-center items-center !overflow-visible"
+          spaceBetween={55}
+        >
+          <SwiperSlide>
+            <div className="size-[150px] bg-red rounded-full"></div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="size-[150px] bg-red rounded-full"></div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="size-[150px] bg-red rounded-full"></div>
+          </SwiperSlide>
+        </Swiper>
       </section>
     </main>
   );
