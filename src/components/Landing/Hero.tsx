@@ -34,7 +34,7 @@ export default function Hero() {
           className="w-full min-[500px]:hidden"
         />
         <div className="text-[14px] md:text-[16px] bg-dark-2 font-semibold absolute top-[calc(100%+7px)] left-0 text-neutral-1 px-[34px] py-3 rounded-[25px] rounded-bl-[37px] rounded-tl-[0px]">
-          Are you ready to login?
+          Are you ready to log the night away?
         </div>
       </div>
     </main>
