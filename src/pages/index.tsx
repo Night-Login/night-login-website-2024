@@ -3,6 +3,7 @@ import Hero from "@/components/Landing/Hero";
 import Intro from "@/components/Landing/Intro";
 import Projects from "@/components/Landing/Projects";
 import Solutions from "@/components/Landing/Solutions";
+import Testimony from "@/components/Landing/Testimony";
 import Head from "next/head";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Intro />
         <Projects />
         <Solutions />
+        <Testimony />
         <Footer />
       </main>
     </>
