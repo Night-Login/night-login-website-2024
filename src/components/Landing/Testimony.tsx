@@ -3,6 +3,7 @@ import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
+import Arif from "@/../public/assets/images/photos/Arif.jpg";
 
 export default function Testimony() {
   const [swiper, setSwiper] = useState<any>(null);
@@ -19,6 +20,40 @@ export default function Testimony() {
     if (index === activeSlide) return " bg-dark-1 ";
     return " bg-[#D9D9D9] ";
   };
+
+  interface Testimony {
+    name: string;
+    role: string;
+    testimony: string;
+    image: any;
+  }
+
+  const testimonies:Testimony[] = [
+    {
+      name: "Customer 1",
+      role: "Customer",
+      testimony: "Mantap gan",
+      image: ""
+    },
+    {
+      name: "Moh Rizky Arif",
+      role: "Head of NCSC 2024",
+      testimony: "Ingat!!! Darah keturunan PKI akan tetap mengalir kepada anak cucunya dan dia akan tetap menjadi PENGHIANAT!! BOHONG KALAU TIDAK!",
+      image: Arif,
+    },
+    {
+      name: "Alumni 1",
+      role: "Alumni 2020",
+      testimony: "mantap cik",
+      image: ""
+    },
+    {
+      name: "Alumni 2",
+      role: "Alumni 2021",
+      testimony: "",
+      image: ""
+    },
+  ];
 
   return (
     <main className="min-h-screen flex flex-col justify-center items-center pb-[140px]">
@@ -56,18 +91,22 @@ export default function Testimony() {
           <SwiperSlide>
             <div
               onClick={() => swiper && swiper.slideTo(0)}
-              className={`size-[180px] place-self-center bg-red rounded-full transition duration-200 ${imageIndexStyling(
+              className={`size-[180px] flex justify-center relative items-center place-self-center overflow-hidden bg-red rounded-full transition duration-200 ${imageIndexStyling(
                 0
               )}`}
-            ></div>
+            >
+              <Image src={testimonies[0].image} alt={testimonies[0].name} className="w-full absolute" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <div
               onClick={() => swiper && swiper.slideTo(1)}
-              className={`size-[180px] place-self-center bg-red rounded-full transition duration-200 ${imageIndexStyling(
+              className={`size-[180px] flex justify-center relative items-center place-self-center overflow-hidden bg-red rounded-full transition duration-200 ${imageIndexStyling(
                 1
               )}`}
-            ></div>
+            >
+              <Image src={testimonies[1].image} alt={testimonies[1].name} className="w-full absolute" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <div
@@ -89,10 +128,10 @@ export default function Testimony() {
 
         <div className="mt-4 flex flex-col justify-center items-center">
           <h1 className="text-[24px] font-bold text-center leading-[100%]">
-            KIM MINJI
+            {testimonies[activeSlide].name}
           </h1>
           <h2 className="text-[20px] font-medium text-center text-red mb-2">
-            Alumni of NWDC 2020
+            {testimonies[activeSlide].role}
           </h2>
           <svg
             width="23"
@@ -106,9 +145,8 @@ export default function Testimony() {
               fill="#D62340"
             />
           </svg>
-          <p className="mt-[10px] max-w-[742px] text-[24px] font-medium text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-            consectetur molestie etiam eget.
+          <p className="mt-[10px] max-w-[742px] text-[24px] font-medium text-center min-h-[108px]">
+            {testimonies[activeSlide].testimony}
           </p>
         </div>
 
