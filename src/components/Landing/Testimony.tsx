@@ -28,30 +28,31 @@ export default function Testimony() {
     image: any;
   }
 
-  const testimonies:Testimony[] = [
+  const testimonies: Testimony[] = [
     {
       name: "Customer 1",
       role: "Customer",
       testimony: "Mantap gan",
-      image: ""
+      image: "",
     },
     {
       name: "Moh Rizky Arif",
       role: "Head of NCSC 2024",
-      testimony: "Ingat!!! Darah keturunan PKI akan tetap mengalir kepada anak cucunya dan dia akan tetap menjadi PENGHIANAT!! BOHONG KALAU TIDAK!",
+      testimony:
+        "Ingat!!! Darah keturunan PKI akan tetap mengalir kepada anak cucunya dan dia akan tetap menjadi PENGHIANAT!! BOHONG KALAU TIDAK!",
       image: Arif,
     },
     {
       name: "Alumni 1",
       role: "Alumni 2020",
       testimony: "mantap cik",
-      image: ""
+      image: "",
     },
     {
       name: "Alumni 2",
       role: "Alumni 2021",
       testimony: "",
-      image: ""
+      image: "",
     },
   ];
 
@@ -63,8 +64,10 @@ export default function Testimony() {
           // data-aos="fade-up"
         >
           <div className="relative z-[1] w-fit flex items-end">
-            <div className="text-[20px] w-max -mr-[25px] grid place-items-center h-[31.5px] sm:h-[39px] font-bold text-white bg-red px-[50px] sm:px-[50px] rounded-bl-[25px] rounded-tr-[25px] z-[1] relative">
-              OUR ALUMNI & CUSTOMER
+            <div className="text-[18px] sm:text-[20px] w-max -mr-[25px] flex justify-center items-center text-center h-fit sm:h-[39px] font-bold text-white bg-red px-[20px] sm:px-[50px] rounded-bl-[25px] rounded-tr-[25px] z-[1] relative">
+              <p className="">
+                <span className="hidden sm:inline">OUR</span> ALUMNI & CUSTOMER
+              </p>
             </div>
             <Image
               src={AboutUsDeco}
@@ -95,7 +98,11 @@ export default function Testimony() {
                 0
               )}`}
             >
-              <Image src={testimonies[0].image} alt={testimonies[0].name} className="w-full absolute" />
+              <Image
+                src={testimonies[0].image}
+                alt={testimonies[0].name}
+                className="w-full absolute"
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -105,7 +112,11 @@ export default function Testimony() {
                 1
               )}`}
             >
-              <Image src={testimonies[1].image} alt={testimonies[1].name} className="w-full absolute" />
+              <Image
+                src={testimonies[1].image}
+                alt={testimonies[1].name}
+                className="w-full absolute"
+              />
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -145,16 +156,28 @@ export default function Testimony() {
               fill="#D62340"
             />
           </svg>
-          <p className="mt-[10px] max-w-[742px] text-[24px] font-medium text-center min-h-[108px]">
+          <p className="mt-[10px] max-w-[742px] px-5 text-[20px] md:text-[24px] font-medium text-center min-h-[108px]">
             {testimonies[activeSlide].testimony}
           </p>
         </div>
 
         <div className="flex gap-3 justify-center items-center mt-8">
-          <button onClick={() => swiper.slideTo(0)} className={`size-[10px] rounded-full ${sliderIndexStyling(0)}`}></button>
-          <button onClick={() => swiper.slideTo(1)} className={`size-[10px] rounded-full ${sliderIndexStyling(1)}`}></button>
-          <button onClick={() => swiper.slideTo(2)} className={`size-[10px] rounded-full ${sliderIndexStyling(2)}`}></button>
-          <button onClick={() => swiper.slideTo(3)} className={`size-[10px] rounded-full ${sliderIndexStyling(3)}`}></button>
+          <button
+            onClick={() => swiper.slideTo(0)}
+            className={`size-[10px] rounded-full ${sliderIndexStyling(0)}`}
+          ></button>
+          <button
+            onClick={() => swiper.slideTo(1)}
+            className={`size-[10px] rounded-full ${sliderIndexStyling(1)}`}
+          ></button>
+          <button
+            onClick={() => swiper.slideTo(2)}
+            className={`size-[10px] rounded-full ${sliderIndexStyling(2)}`}
+          ></button>
+          <button
+            onClick={() => swiper.slideTo(3)}
+            className={`size-[10px] rounded-full ${sliderIndexStyling(3)}`}
+          ></button>
         </div>
       </section>
     </main>
