@@ -1,4 +1,7 @@
 import Image from "next/image";
+
+import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 import DecoTop from "@/../public/assets/images/DecoTop.svg";
 import DecoBotRight from "@/../public/assets/images/DecoBotRight.svg";
 import ArrowL from "@/../../public/assets/images/icons/ArrowLeft.png";
@@ -26,6 +29,8 @@ const handleSubmit = (event: FormEvent, data: FormData) => {
   // ACTION HERE
 };
 
+
+
 export default function UserLoginPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [isPassHidden, setIsPassHidden] = useState<boolean>(true);
@@ -40,6 +45,12 @@ export default function UserLoginPage() {
     });
   };
   const { email, password } = formData;
+
+  const login = useGoogleLogin({
+    onSuccess: tokenResponse => console.log(tokenResponse),
+  });
+
+  
   return (
     <main className="relative h-screen">
       <Image
@@ -125,7 +136,9 @@ export default function UserLoginPage() {
           <button type="submit" className="bg-red text-neutral-1 py-2 rounded-md transition-colors hover:bg-rose-700 active:bg-rose-600">
             Login
           </button>
-          <button className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2">
+          <button
+          onClick={()=>login()}
+          className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2" >
             <Image src={GoogleIco} alt="" className="absolute select-none"/>
             <a className="w-full font-semibold">Sign In with Google</a>
           </button>
