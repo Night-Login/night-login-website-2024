@@ -1,7 +1,5 @@
 import Image from "next/image";
-
-import { useGoogleLogin } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
+import { signIn } from "next-auth/react";
 import DecoTop from "@/../public/assets/images/DecoTop.svg";
 import DecoBotRight from "@/../public/assets/images/DecoBotRight.svg";
 import ArrowL from "@/../../public/assets/images/icons/ArrowLeft.png";
@@ -46,9 +44,9 @@ export default function UserLoginPage() {
   };
   const { email, password } = formData;
 
-  const login = useGoogleLogin({
-    onSuccess: tokenResponse => console.log(tokenResponse),
-  });
+  const handleClick = async () => {
+    await signIn("google"); // or the name of your provider
+  };
 
   
   return (
@@ -137,7 +135,7 @@ export default function UserLoginPage() {
             Login
           </button>
           <button
-          onClick={()=>login()}
+          onClick={handleClick}
           className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2" >
             <Image src={GoogleIco} alt="" className="absolute select-none"/>
             <a className="w-full font-semibold">Sign In with Google</a>
