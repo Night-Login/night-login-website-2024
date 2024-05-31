@@ -60,3 +60,16 @@ body {
   animation: BladeL 1000ms linear alternate infinite;
   animation-delay: 300ms;
 }
+
+@keyframes shake {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px) rotate(8deg); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+.notice-me {
+  display: block;
+  animation: shake 4s ease-in-out infinite;
+}

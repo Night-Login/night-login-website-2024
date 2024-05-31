@@ -1,3 +1,4 @@
+import Chatbot from "@/components/Chatbot";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Landing/Hero";
 import Intro from "@/components/Landing/Intro";
@@ -19,6 +20,7 @@ export default function Home() {
         <Solutions />
         <Testimony />
         <Footer />
+        <Chatbot />
       </main>
     </>
   );
