@@ -63,9 +63,9 @@ body {
 
 @keyframes shake {
   0% { transform: translateX(0) rotate(0deg); }
-  25% { transform: translateX(-2px); }
-  50% { transform: translateX(2px) rotate(8deg); }
-  75% { transform: translateX(-2px); }
+  25% { transform: translateY(-5px); }
+  50% { transform: translateY(5px) rotate(8deg); }
+  75% { transform: translateY(-5px); }
   100% { transform: translateX(0); }
 }
 
