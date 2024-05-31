@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
 import Arif from "@/../public/assets/images/photos/Arif.jpg";
+import Giga from "@/../public/assets/images/photos/Giga.jpg";
+import Zakong from "@/../public/assets/images/photos/Zakong.jpg";
 
 export default function Testimony() {
   const [swiper, setSwiper] = useState<any>(null);
@@ -30,10 +32,10 @@ export default function Testimony() {
 
   const testimonies: Testimony[] = [
     {
-      name: "Customer 1",
-      role: "Customer",
+      name: "Giga Hidrika Aura A",
+      role: "President of Night Login 2024",
       testimony: "Mantap gan",
-      image: "",
+      image: Giga,
     },
     {
       name: "Moh Rizky Arif",
@@ -43,16 +45,10 @@ export default function Testimony() {
       image: Arif,
     },
     {
-      name: "Alumni 1",
-      role: "Alumni 2020",
-      testimony: "mantap cik",
-      image: "",
-    },
-    {
-      name: "Alumni 2",
-      role: "Alumni 2021",
-      testimony: "",
-      image: "",
+      name: "Zakong",
+      role: "Vice President of Night Login 2024",
+      testimony: "lorem ipsum dolor sit amet",
+      image: Zakong,
     },
   ];
 
@@ -101,7 +97,7 @@ export default function Testimony() {
               <Image
                 src={testimonies[0].image}
                 alt={testimonies[0].name}
-                className="w-full absolute"
+                className="absolute w-full"
               />
             </div>
           </SwiperSlide>
@@ -120,30 +116,24 @@ export default function Testimony() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div
+          <div
               onClick={() => swiper && swiper.slideTo(2)}
-              className={`size-[180px] place-self-center bg-red rounded-full transition duration-200 ${imageIndexStyling(
+              className={`size-[180px] flex justify-center relative items-center place-self-center overflow-hidden bg-red rounded-full transition duration-200 ${imageIndexStyling(
                 2
               )}`}
-            ></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              onClick={() => swiper && swiper.slideTo(3)}
-              className={`size-[180px] bg-red rounded-full transition duration-200 ${imageIndexStyling(
-                3
-              )}`}
-            ></div>
+            >
+              <Image
+                src={testimonies[2].image}
+                alt={testimonies[2].name}
+                className="w-full absolute"
+              />
+            </div>
           </SwiperSlide>
         </Swiper>
 
         <div className="mt-4 flex flex-col justify-center items-center">
-          <h1 className="text-[24px] font-bold text-center leading-[100%]">
-            {testimonies[activeSlide].name}
-          </h1>
-          <h2 className="text-[20px] font-medium text-center text-red mb-2">
-            {testimonies[activeSlide].role}
-          </h2>
+          <h1 className="text-[24px] font-bold text-center leading-[100%]">{testimonies[activeSlide].name}</h1>
+          <h2 className="text-[20px] font-medium text-center text-red mb-2">{testimonies[activeSlide].role}</h2>
           <svg
             width="23"
             height="17"
