@@ -34,18 +34,18 @@ export default function Testimony() {
     {
       name: "Giga Hidrika Aura A",
       role: "President of Night Login 2024",
-      testimony: "Mantap gan",
+      testimony: "lorem ipsum dolor sit amet",
       image: Giga,
     },
     {
       name: "Moh Rizky Arif",
       role: "Head of NCSC 2024",
       testimony:
-        "Ingat!!! Darah keturunan PKI akan tetap mengalir kepada anak cucunya dan dia akan tetap menjadi PENGHIANAT!! BOHONG KALAU TIDAK!",
+        "lorem ipsum dolor sit amet",
       image: Arif,
     },
     {
-      name: "Zakong",
+      name: "Ahmad Zaki Akmal",
       role: "Vice President of Night Login 2024",
       testimony: "lorem ipsum dolor sit amet",
       image: Zakong,
