@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   const r = useRouter();
+  const antiNavRoutes = ["/requests", "/dashboard"];
   useEffect(() => {
     AOS.init({
       once: false,
@@ -23,9 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
     </Head>
     <main className="font-poppins">
       {
-          !r.pathname.includes("/requests") 
-          ? <Navbar /> 
-          : null
+          antiNavRoutes.includes(r.pathname) 
+          ? null
+          : <Navbar /> 
       }
       <Component {...pageProps} />
     </main>
