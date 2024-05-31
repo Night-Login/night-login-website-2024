@@ -60,7 +60,7 @@ export default function UserLoginPage() {
         alt=""
         className="absolute right-0 bottom-0 max-w-[700px] w-[33%] min-w-[600px] select-none z-0"
       />
-      <nav className="px-14 py-10 hidden md:block">
+      <nav className="px-14 py-10 hidden md:block absolute top-0">
         <Link href={"/"}>
           <button
             className="font-semibold flex items-center gap-5 hover:text-red transition text-[16px] lg:text-[20px]"
@@ -76,7 +76,7 @@ export default function UserLoginPage() {
           </button>
         </Link>
       </nav>
-      <section className="w-full flex flex-col items-center pt-28 md:pt-0 relative z-10">
+      <section className="w-full flex flex-col items-center justify-center pt-28 md:pt-0 relative z-10 min-h-screen">
         <div className="flex items-end w-fit gap-4">
           <Image
             className="w-[60px]"

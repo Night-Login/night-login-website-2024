@@ -35,7 +35,7 @@ export default function Navbar() {
           title="Projects"
         />
         <Link
-          href="/projects"
+          href="/requests/login"
           className="px-[25px] py-[5px] xl:py-[10px] transition bg-red hover:bg-opacity-90 rounded-full "
         >
           Request
@@ -86,7 +86,7 @@ export default function Navbar() {
             title="Projects"
           />
           <Link
-            href="#"
+            href="/requests/login"
             className="px-[25px] py-[5px] xl:py-[10px] transition bg-red hover:bg-opacity-90 rounded-full "
           >
             Request
