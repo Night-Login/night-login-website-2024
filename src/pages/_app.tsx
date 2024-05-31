@@ -18,8 +18,10 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, []);
   return (
+
     <>
-    <Head>
+
+     <Head>
       <link rel="icon" href="/assets/images/Logo.png" />
     </Head>
     <main className="font-poppins">
@@ -30,6 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
       }
       <Component {...pageProps} />
     </main>
+    
     </>
   );
 }
