@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
       <main className="bg-neutral-1 w-full min-h-screen flex flex-col justify-center overflow-x-hidden">
         <Hero  />
-        <Intro />
+        <Intro isCompleteVersion={false} />
         <Projects />
         <Solutions />
         <Testimony />

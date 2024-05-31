@@ -20,7 +20,7 @@ export default function AboutPage() {
             <title>About Night Login</title>
         </Head>
         <main className="bg-neutral-1 w-full min-h-screen flex flex-col justify-center overflow-x-hidden">
-            <Intro />
+            <Intro isCompleteVersion={true} />
             <Footer />
             <Chatbot />
         </main>

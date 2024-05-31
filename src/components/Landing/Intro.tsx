@@ -6,7 +6,7 @@ import DecoIntroBot from "../../../public/assets/images/DecoIntroBot.svg";
 import Button from "../Button";
 import Link from "next/link";
 
-export default function Intro() {
+export default function Intro( { isCompleteVersion }: { isCompleteVersion: boolean } ) {
   return (
     <main className="min-h-screen relative bg-neutral-1 z-0 grid place-items-center overflow-hidden py-[100px]">
       <div className="flex flex-col sm:flex-row justify-center items-center gap-[30px] lg:gap-[64px] relative z-[1]" data-aos="fade-up">
@@ -37,9 +37,43 @@ export default function Intro() {
             bidang-bidang IT.
           </p>
 
-          <Link href="/about">
-            <Button color="dark" title="READ MORE" className="mt-6"></Button>
-          </Link>
+          {/* If not the full version, show read more */}
+          {isCompleteVersion == false && (
+            <Link href="/about">
+              <Button color="dark" title="READ MORE" className="mt-6"></Button>
+            </Link>
+          )}
+
+          {/* If the full version, show the complete version */}
+          {isCompleteVersion == true && (
+            <div className="mt-6">
+              <h2 className="font-bold text-[24px] text-dark-2">VISI</h2>
+              <p className="font-medium text-justify max-w-[680px] mt-1">
+                Menjadi wadah pengembangan kemampuan, kreativitas, dan inovasi
+                mahasiswa DTETI FT UGM di bidang teknologi informasi.
+              </p>
+              <h2 className="font-bold text-[24px] text-dark-2 mt-4">MISI</h2>
+              <ul className="font-medium text-justify mt-1 list-disc list-inside max-w-[680px]">
+                <li>
+                  Menyelenggarakan kegiatan yang berhubungan dengan teknologi
+                  informasi.
+                </li>
+                <li>
+                  Membantu mahasiswa DTETI FT UGM dalam mengembangkan kemampuan
+                  di bidang teknologi informasi.
+                </li>
+                <li>
+                  Menjadi wadah bagi mahasiswa DTETI FT UGM untuk mengembangkan
+                  kreativitas dan inovasi di bidang teknologi informasi.
+                </li>
+                <li>
+                  Membantu mahasiswa DTETI FT UGM dalam memperluas wawasan
+                  terkait bidang teknologi informasi.
+                </li>
+              </ul>
+            </div>
+          )}
+
         </div>
       </div>
       <Image src={DecoIntroBot} alt="Deco" className="absolute bottom-0 right-0 w-[150px] md:w-[200px]" data-aos="fade-up" data-aos-offset="-100" data-aos-delay="400" />
