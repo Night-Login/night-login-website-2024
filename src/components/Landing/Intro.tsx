@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Intro( { isCompleteVersion }: { isCompleteVersion: boolean } ) {
   return (
-    <main className={`min-h-screen relative bg-neutral-1 z-0 grid place-items-center overflow-hidden ${isCompleteVersion ? 'py-[150px]' : 'py-[100px]'}`}>
+    <main className={`min-h-screen relative bg-neutral-1 z-0 grid place-items-center overflow-hidden ${isCompleteVersion ? "py-[150px]" : "py-[100px]"}`}>
       <div className="flex flex-col sm:flex-row justify-center items-center gap-[30px] lg:gap-[64px] relative z-[1]" data-aos="fade-up">
         
         <div className="!overflow-visible flex justify-center items-center">
