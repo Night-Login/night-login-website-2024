@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   const r = useRouter();
-  const antiNavRoutes = ["/requests/login", "/requests/register", "/dashboard", "/dashboard/request", "/dashboard/history", "/dashboard/guide", "/dashboard/faq"];
+  const antiNavRoutes = ["/requests/login", "/requests/register", "/requests/payment", "/dashboard", "/dashboard/request", "/dashboard/history", "/dashboard/guide", "/dashboard/faq"];
   useEffect(() => {
     AOS.init({
       once: false,
