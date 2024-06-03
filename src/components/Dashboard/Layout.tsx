@@ -2,7 +2,7 @@ import DashboardLogo from "@/../public/assets/images/DasboardLogo.png";
 import ArrowL from "@/../public/assets/images/icons/ArrowLeft.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { JSXElementConstructor, ReactComponentElement, ReactNode, useState } from "react";
 import Home from "@/../public/assets/images/icons/Home.png";
 import HomeActive from "@/../public/assets/images/icons/HomeActive.png";
 import Request from "@/../public/assets/images/icons/Request.png";
@@ -23,12 +23,12 @@ interface MenuItem {
   link: string;
 }
 
-export default function DashboardLayout() {
+  export default function DashboardLayout({children}: {children:ReactNode}) {
   const [isBtnHovered, setIsBtnHovered] = useState(false);
   const r = useRouter();
   return (
     <main className="flex min-h-screen">
-      <aside className="flex-shrink-0 w-[285px] border-r-2 border-[#DEDEDE]/90 pt-[24.5px] px-[32px]">
+      <aside className="flex-shrink-0 bg-white w-[285px] border-r-2 border-[#DEDEDE]/90 pt-[24.5px] px-[32px]">
         <Link href={"/"}>
           <button
             className="font-semibold flex items-center gap-5 hover:text-red transition text-[14px] lg:text-[16px] mb-[15px]"
@@ -95,7 +95,9 @@ export default function DashboardLayout() {
           </Link>
         </div>
       </aside>
-      <aside></aside>
+      <aside className="w-full">
+        {children}
+      </aside>
     </main>
   );
 }
