@@ -24,7 +24,6 @@ interface InputField extends EventTarget {
 
 const handleSubmit = (event: FormEvent, data: FormData) => {
   event.preventDefault();
-  alert("Login succeeded");
   // ACTION HERE
 };
 
@@ -51,7 +50,7 @@ export default function UserLoginPage() {
 
   const handleGithub = async () => {
     await signIn("github");
-  }
+  };
 
   
   return (
