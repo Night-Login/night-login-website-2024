@@ -6,10 +6,20 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "aos/dist/aos.css";
 import Navbar from "@/components/Navbar";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const r = useRouter();
-  const antiNavRoutes = ["/requests/login", "/requests/register", "/requests/payment", "/dashboard", "/dashboard/request", "/dashboard/history", "/dashboard/guide", "/dashboard/faq"];
+  const antiNavRoutes = [
+    "/requests/login",
+    "/requests/register",
+    "/requests/payment",
+    "/dashboard",
+    "/dashboard/request",
+    "/dashboard/history",
+    "/dashboard/guide",
+    "/dashboard/faq",
+  ];
   useEffect(() => {
     AOS.init({
       once: false,
@@ -18,21 +28,20 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, []);
   return (
-
     <>
-
-     <Head>
-      <link rel="icon" href="/assets/images/Logo.png" />
-    </Head>
-    <main className="font-poppins">
-      {
-          antiNavRoutes.includes(r.pathname) 
-          ? null
-          : <Navbar /> 
-      }
-      <Component {...pageProps} />
-    </main>
-    
+      <Head>
+        <link
+          rel="icon"
+          href="/assets/images/Logo.png"
+        />
+      </Head>
+      <main className="font-poppins">
+        {antiNavRoutes.includes(r.pathname) ? null : <Navbar />}
+        <SessionProvider>
+          <Component {...pageProps} />
+        </SessionProvider>
+      </main>
     </>
   );
 }
+
