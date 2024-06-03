@@ -5,6 +5,7 @@ import DecoBotRight from "@/../public/assets/images/DecoBotRight.svg";
 import ArrowL from "@/../../public/assets/images/icons/ArrowLeft.png";
 import AboutUsDeco from "../../../public/assets/images/AboutUsDeco.svg";
 import GoogleIco from "@/../../public/assets/images/icons/Google.svg";
+import GithubIco from "@/../../public/assets/images/icons/github-mark.svg";
 import DecoNLLogo from "@/../../public/assets/images/DecoNLLogo.svg";
 import Eye from "@/../../public/assets/images/icons/AiOutlineEye.svg";
 import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg";
@@ -47,6 +48,10 @@ export default function UserLoginPage() {
   const handleClick = async () => {
     await signIn("google"); // or the name of your provider
   };
+
+  const handleGithub = async () => {
+    await signIn("github");
+  }
 
   
   return (
@@ -139,6 +144,12 @@ export default function UserLoginPage() {
           className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2" >
             <Image src={GoogleIco} alt="" className="absolute select-none"/>
             <a className="w-full font-semibold">Sign In with Google</a>
+          </button>
+          <button
+          onClick={handleGithub}
+          className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2" >
+            <Image src={GithubIco} alt="" className="absolute select-none"/>
+            <a className="w-full font-semibold">Sign In with Github</a>
           </button>
           <p className="w-full text-center">Don&apos;t have an account? {" "}
           <Link href="/requests/register" className="text-red hover:underline">Register Now</Link></p>
