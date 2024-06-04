@@ -37,16 +37,12 @@ const PaymentPage = () => {
                             <Image
                                 src={qrUrl}
                                 alt="QR Code"
-                                className="w-40 h-40"
+                                className="size-[300px]"
                                 width={160}
                                 height={160}
                             />
                         ) : (
-                            <Image
-                                src={Logo}
-                                alt="QRIS Example"
-                                className="w-40 h-40"
-                            />
+                            <div className="bg-slate-300 animate-pulse size-[300px]" />
                         )}
                     </div>
                     <div className="flex flex-col justify-center p-6  border-gray-200">
