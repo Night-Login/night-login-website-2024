@@ -11,7 +11,6 @@ import Eye from "@/../../public/assets/images/icons/AiOutlineEye.svg";
 import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg";
 import Link from "next/link";
 import { FormEvent, useState, useEffect } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -30,7 +29,8 @@ interface InputField extends EventTarget {
 
 const handleSubmit = (event: FormEvent, data: FormData) => {
   event.preventDefault();
-  axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
+  axios
+    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
     .then((res) => {
       const token: Token = res.data.token;
 
@@ -101,13 +101,12 @@ export default function UserLoginPage() {
     // ACTION HERE
   };
 
-  
   const { data: session, status } = useSession();
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard"); // Redirect to /dashboard upon successful sign-in
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return (
@@ -206,8 +205,24 @@ export default function UserLoginPage() {
           <div className="flex flex-col gap-4">
             <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
             <div className="flex items-center gap-4">
-              <img src={captchaImage} alt="Captcha" className="w-[200px] h-[50px]" width={200} height={50}/>
-              <button type="button" onClick={fetchCaptcha} className="text-blue-500 underline">Refresh</button>
+              {captchaImage === "" ? (
+                <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
+              ) : (
+                <img
+                  src={captchaImage}
+                  alt="Captcha"
+                  className="w-[200px] h-[50px]"
+                  width={200}
+                  height={50}
+                />
+              )}
+              <button
+                type="button"
+                onClick={fetchCaptcha}
+                className="text-blue-500 underline"
+              >
+                Refresh
+              </button>
             </div>
             <input
               className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
@@ -216,7 +231,7 @@ export default function UserLoginPage() {
               required
               name="captcha"
               value={captcha}
-              onChange={e => handleFormChange(e.target)}
+              onChange={(e) => handleFormChange(e.target)}
             />
           </div>
           <button
