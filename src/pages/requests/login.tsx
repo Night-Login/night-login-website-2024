@@ -27,27 +27,6 @@ interface InputField extends EventTarget {
   value: string;
 }
 
-const handleSubmit = (event: FormEvent, data: FormData) => {
-  event.preventDefault();
-  axios
-    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
-    .then((res) => {
-      const token: Token = res.data.token;
-
-      if (token.length === 0) {
-        alert("Login failed");
-        return;
-      } else {
-        alert("Login succeeded");
-        localStorage.setItem("token", token);
-      }
-    })
-    .catch((err) => {
-      alert("Login failed");
-      console.log(err);
-    });
-};
-
 export default function UserLoginPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [isPassHidden, setIsPassHidden] = useState<boolean>(true);
@@ -97,8 +76,23 @@ export default function UserLoginPage() {
       fetchCaptcha();
       return;
     }
-    // Proceed with login logic
-    // ACTION HERE
+    axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
+    .then((res) => {
+      const token: Token = res.data.token;
+
+      if (token.length === 0) {
+        alert("Login failed");
+        return;
+      } else {
+        alert("Login succeeded");
+        localStorage.setItem("token", token);
+        router.replace("/dashboard");
+      }
+    })
+    .catch((err) => {
+      alert("Login failed");
+      console.log(err);
+    });
   };
 
   const { data: session, status } = useSession();
@@ -241,6 +235,7 @@ export default function UserLoginPage() {
             Login
           </button>
           <button
+            type="button"
             onClick={handleClick}
             className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2"
           >
@@ -252,6 +247,7 @@ export default function UserLoginPage() {
             <a className="w-full font-semibold">Sign In with Google</a>
           </button>
           <button
+            type="button"
             onClick={handleGithub}
             className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2"
           >
