@@ -16,6 +16,7 @@ import FaqActive from "@/../public/assets/images/icons/FaqActive.png";
 import Logout from "@/../public/assets/images/icons/Logout.png";
 
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 interface MenuItem {
   title: string;
@@ -81,18 +82,19 @@ interface MenuItem {
               link="/dashboard/faq"
             />
           </div>
-          <Link
-            href="/"
-            className="w-full block"
-          >
-            <button className="font-jakarta w-full flex justify-start items-center px-4 py-[14px] gap-3 text-[#A3A3A3] hover:bg-red/70 active:bg-red hover:text-white transition rounded-[10px]">
+            <button onClick={() => {
+              signOut({
+                callbackUrl: "/", // Define the callback URL here
+              }).then(() => {
+                r.replace("/");
+              });
+            }} className="font-jakarta w-full flex justify-start items-center px-4 py-[14px] gap-3 text-[#A3A3A3] hover:bg-red/70 active:bg-red hover:text-white transition rounded-[10px]">
               <Image
                 src={Logout}
                 alt=""
               />
               <span>Logout</span>
             </button>
-          </Link>
         </div>
       </aside>
       <aside className="w-full">
