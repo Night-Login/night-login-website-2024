@@ -45,8 +45,8 @@ export default function UserLoginPage() {
 
   const fetchCaptcha = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/captcha");
-      setCaptchaImage(`http://localhost:4000${response.data.image}`);
+      const response = await axios.get("https://iai-captcha.vercel.app/captcha");
+      setCaptchaImage(`https://iai-captcha.vercel.app${response.data.image}`);
       setCaptchaAnswer(response.data.answer);
     } catch (error) {
       console.error("Failed to fetch captcha:", error);
@@ -162,7 +162,7 @@ export default function UserLoginPage() {
           <div className="flex flex-col gap-4">
             <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
             <div className="flex items-center gap-4">
-              <Image src={captchaImage} alt="Captcha" className="w-[200px] h-[50px]" width={200} height={50}/>
+              <img src={captchaImage} alt="Captcha" className="w-[200px] h-[50px]" width={200} height={50}/>
               <button type="button" onClick={fetchCaptcha} className="text-blue-500 underline">Refresh</button>
             </div>
             <input
