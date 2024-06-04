@@ -13,26 +13,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "iai-captcha.vercel.app",
         port: "",
-        pathname: "/captcha",
+        pathname: "/captchas/*",
       },
     ],
   },
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: "https",
-  //       hostname: "api.sandbox.midtrans.com",
-  //       port: "",
-  //       pathname: "/*",
-  //     },
-  //     {
-  //       protocol: "https",
-  //       hostname: "iai-captcha.vercel.app",
-  //       port: "",
-  //       pathname: "/captcha",
-  //     },
-  //   ],
-  // }
 };
 
 module.exports = nextConfig;

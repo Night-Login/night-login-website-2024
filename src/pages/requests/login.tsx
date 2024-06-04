@@ -208,7 +208,7 @@ export default function UserLoginPage() {
               {captchaImage === "" ? (
                 <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
               ) : (
-                <img
+                <Image
                   src={captchaImage}
                   alt="Captcha"
                   className="w-[200px] h-[50px]"

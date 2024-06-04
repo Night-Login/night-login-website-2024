@@ -95,12 +95,12 @@ export default function UserRegisterPage() {
 
 
   return (
-    <main className="relative min-h-screen">
+    <main className="relative min-h-screen py-20">
       <Image
         priority
         src={DecoTop}
         alt=""
-        className="absolute right-0 max-w-[420px] w-[33%] min-w-[300px] scale-x-[-1] select-none z-0"
+        className="absolute right-0 top-0 max-w-[420px] w-[33%] min-w-[300px] scale-x-[-1] select-none z-0"
       />
       <Image
         priority
@@ -246,14 +246,20 @@ export default function UserRegisterPage() {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="bg-red text-neutral-1 py-2 rounded-md transition-colors hover:bg-rose-700 active:bg-rose-600"
-          ></button>
           <div className="flex flex-col gap-4">
             <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
             <div className="flex items-center gap-4">
-              <img src={captchaImage} alt="Captcha" className="w-[200px] h-[50px]" width={200} height={50}/>
+            {captchaImage === "" ? (
+                <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
+              ) : (
+                <Image
+                  src={captchaImage}
+                  alt="Captcha"
+                  className="w-[200px] h-[50px]"
+                  width={200}
+                  height={50}
+                />
+              )}
               <button type="button" onClick={fetchCaptcha} className="text-blue-500 underline">Refresh</button>
             </div>
             <input
