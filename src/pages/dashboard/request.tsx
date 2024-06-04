@@ -5,6 +5,7 @@ import FormInput from "@/components/Dashboard/FormInput";
 import { useState } from "react";
 import Button from "@/components/Button";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function DashboardRequest() {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ export default function DashboardRequest() {
   const [description, setDescription] = useState("");
   const [objective, setObjective] = useState("");
   const [budget, setBudget] = useState("");
+  const router = useRouter();
 
   const handleSubmit = () => {
     axios
@@ -30,6 +32,7 @@ export default function DashboardRequest() {
       .then((res) => {
         alert("Request submitted");
         localStorage.setItem("orderId", res.data.orderId);
+        router.replace("/requests/payment"); 
         console.log(res.data);
       })
       .catch((err) => {
