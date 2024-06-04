@@ -74,6 +74,7 @@ export default function UserLoginPage() {
     if (formData.captcha !== captchaAnswer) {
       alert("Invalid CAPTCHA, please try again.");
       fetchCaptcha();
+      setCaptchaAnswer("");
       return;
     }
     axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)

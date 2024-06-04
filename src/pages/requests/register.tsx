@@ -9,6 +9,7 @@ import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg
 import Link from "next/link";
 import { FormEvent, useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 type FormData = {
   name: string;
@@ -23,24 +24,6 @@ interface InputField extends EventTarget {
   value: string;
 }
 
-const handleSubmit = (event: FormEvent, data: FormData) => {
-  event.preventDefault();
-  if (data.password !== data.confirmPassword) {
-    alert("Password does not match");
-    return;
-  }
-  axios
-    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register", data)
-    .then((res) => {
-      alert("Registration succeeded");
-      console.log(res.data);
-    })
-    .catch((err) => {
-      alert("Registration failed");
-      console.log(err);
-    });
-};
-
 export default function UserRegisterPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [isPassHidden, setIsPassHidden] = useState<boolean>(true);
@@ -54,6 +37,7 @@ export default function UserRegisterPage() {
     confirmPassword: "",
     captcha: ""
   });
+  const router = useRouter();
 
   const handleSubmit = (event: FormEvent, data:FormData) => {
     event.preventDefault();
@@ -61,13 +45,24 @@ export default function UserRegisterPage() {
       alert("Password does not match");
       return;
     }
+    console.log(formData);
     if (formData.captcha !== captchaAnswer) {
       alert("Invalid CAPTCHA, please try again.");
       fetchCaptcha();
+      setCaptchaAnswer("");
       return;
     }
-    alert("Registration succeeded");
-    // ACTION HERE
+    axios
+    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register", data)
+    .then((res) => {
+      alert("Registration succeeded, you can now login");
+      console.log(res.data);
+      router.push("/requests/login");
+    })
+    .catch((err) => {
+      alert("Registration failed");
+      console.log(err);
+    });
   };
 
   const handleFormChange = (target: InputField) => {
