@@ -12,6 +12,9 @@ import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+
+type Token = string;
 
 type FormData = {
   email: string;
@@ -25,7 +28,22 @@ interface InputField extends EventTarget {
 
 const handleSubmit = (event: FormEvent, data: FormData) => {
   event.preventDefault();
-  // ACTION HERE
+  axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
+    .then((res) => {
+      const token: Token = res.data.token;
+
+      if (token.length === 0) {
+        alert("Login failed");
+        return;
+      } else {
+        alert("Login succeeded");
+        localStorage.setItem("token", token);
+      }
+    })
+    .catch((err) => {
+      alert("Login failed");
+      console.log(err);
+    });
 };
 
 export default function UserLoginPage() {

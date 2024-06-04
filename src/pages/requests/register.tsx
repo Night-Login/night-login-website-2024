@@ -7,28 +7,37 @@ import DecoNLLogo from "@/../../public/assets/images/DecoNLLogo.svg";
 import Eye from "@/../../public/assets/images/icons/AiOutlineEye.svg";
 import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, } from "react";
+import axios from "axios";
 
 type FormData = {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
-}
+};
 
 interface InputField extends EventTarget {
   name: string;
   value: string;
 }
 
-const handleSubmit = (event: FormEvent, data:FormData) => {
+const handleSubmit = (event: FormEvent, data: FormData) => {
   event.preventDefault();
-  if(data.password !== data.confirmPassword) {
+  if (data.password !== data.confirmPassword) {
     alert("Password does not match");
     return;
   }
-  alert("Registration succeeded");
-  // ACTION HERE
+  axios
+    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register", data)
+    .then((res) => {
+      alert("Registration succeeded");
+      console.log(res.data);
+    })
+    .catch((err) => {
+      alert("Registration failed");
+      console.log(err);
+    });
 };
 
 export default function UserRegisterPage() {
@@ -39,15 +48,16 @@ export default function UserRegisterPage() {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmPassword: ""
   });
   const handleFormChange = (target: InputField) => {
     const { name, value } = target;
     setFormData({
-      ...formData, [name]: value
+      ...formData,
+      [name]: value
     });
   };
-  const {name, email, password, confirmPassword} = formData;
+  const { name, email, password, confirmPassword } = formData;
   return (
     <main className="relative min-h-screen">
       <Image
@@ -76,7 +86,7 @@ export default function UserRegisterPage() {
             onMouseLeave={() => setIsBtnHovered(false)}
           >
             <Image
-              className={isBtnHovered ? "animate-bounce-x" : ""} 
+              className={isBtnHovered ? "animate-bounce-x" : ""}
               src={ArrowL}
               alt=""
             />
@@ -86,21 +96,25 @@ export default function UserRegisterPage() {
       </nav>
       <section className="w-full flex flex-col items-center pt-28 md:pt-0 relative min-h-screen justify-center">
         <div className="flex items-end w-fit gap-4">
-          <Image
-            className="w-[60px]"
-            src={AboutUsDeco}
-            alt="Deco"
-          />
-          <h1 className="font-bold text-[50px] text-dark-1 leading-9">REGISTER</h1>
+          <Image className="w-[60px]" src={AboutUsDeco} alt="Deco" />
+          <h1 className="font-bold text-[50px] text-dark-1 leading-9">
+            REGISTER
+          </h1>
         </div>
-        <p className=" text-gray-500 text-sm py-2">Already have an account?{" "}
-          <Link href="/requests/login" className="text-red hover:underline">Log in.</Link></p>
+        <p className=" text-gray-500 text-sm py-2">
+          Already have an account?{" "}
+          <Link href="/requests/login" className="text-red hover:underline">
+            Log in.
+          </Link>
+        </p>
         <form
           className="p-6 md:p-0 w-full md:w-3/5 lg:w-[30%] flex flex-col gap-6"
-          onSubmit={e => handleSubmit(e, formData)}
-          >
+          onSubmit={(e) => handleSubmit(e, formData)}
+        >
           <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Name</label>
+            <label className="font-semibold text-[16px] lg:text-[20px]">
+              Name
+            </label>
             <input
               className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
               type="text"
@@ -112,7 +126,9 @@ export default function UserRegisterPage() {
             />
           </div>
           <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Email</label>
+            <label className="font-semibold text-[16px] lg:text-[20px]">
+              Email
+            </label>
             <input
               className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
               type="email"
@@ -124,7 +140,9 @@ export default function UserRegisterPage() {
             />
           </div>
           <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Password</label>
+            <label className="font-semibold text-[16px] lg:text-[20px]">
+              Password
+            </label>
             <div className="relative">
               <input
                 className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
@@ -136,25 +154,36 @@ export default function UserRegisterPage() {
                 onChange={(e) => handleFormChange(e.target)}
               />
               <div className="inset-y-0 pr-5 absolute right-0 flex items-center">
-                {
-                    isPassHidden
-                    ? <Image src={EyeOff} alt="" className="cursor-pointer"
-                    onClick={()=>setIsPassHidden(!isPassHidden)}/>
-                      : <Image src={Eye} alt="" className="cursor-pointer"
-                      onClick={() => setIsPassHidden(!isPassHidden)} />
-                }
+                {isPassHidden ? (
+                  <Image
+                    src={EyeOff}
+                    alt=""
+                    className="cursor-pointer"
+                    onClick={() => setIsPassHidden(!isPassHidden)}
+                  />
+                ) : (
+                  <Image
+                    src={Eye}
+                    alt=""
+                    className="cursor-pointer"
+                    onClick={() => setIsPassHidden(!isPassHidden)}
+                  />
+                )}
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Confirm Password</label>
+            <label className="font-semibold text-[16px] lg:text-[20px]">
+              Confirm Password
+            </label>
             <div className="relative">
               <input
-                className={"w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none "+(
-                  formData.password === formData.confirmPassword
-                  ? ""
-                  : "ring-2 ring-red"
-                )}
+                className={
+                  "w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none " +
+                  (formData.password === formData.confirmPassword
+                    ? ""
+                    : "ring-2 ring-red")
+                }
                 type={isConfirmPassHidden ? "password" : "text"}
                 placeholder="Enter your Password"
                 required
@@ -163,17 +192,28 @@ export default function UserRegisterPage() {
                 onChange={(e) => handleFormChange(e.target)}
               />
               <div className="inset-y-0 pr-5 absolute right-0 flex items-center">
-                {
-                  isConfirmPassHidden
-                  ? <Image src={EyeOff} alt="" className="cursor-pointer"
-                  onClick={()=>setIsConfirmPassHidden(!isConfirmPassHidden)}/>
-                  : <Image src={Eye} alt="" className="cursor-pointer"
-                  onClick={() => setIsConfirmPassHidden(!isConfirmPassHidden)} />
-                }
+                {isConfirmPassHidden ? (
+                  <Image
+                    src={EyeOff}
+                    alt=""
+                    className="cursor-pointer"
+                    onClick={() => setIsConfirmPassHidden(!isConfirmPassHidden)}
+                  />
+                ) : (
+                  <Image
+                    src={Eye}
+                    alt=""
+                    className="cursor-pointer"
+                    onClick={() => setIsConfirmPassHidden(!isConfirmPassHidden)}
+                  />
+                )}
               </div>
             </div>
           </div>
-          <button type="submit" className="bg-red text-neutral-1 py-2 rounded-md transition-colors hover:bg-rose-700 active:bg-rose-600">
+          <button
+            type="submit"
+            className="bg-red text-neutral-1 py-2 rounded-md transition-colors hover:bg-rose-700 active:bg-rose-600"
+          >
             Register
           </button>
         </form>
