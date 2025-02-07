@@ -110,6 +110,20 @@ export default function Wallpapers() {
                 className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
               />
             </a>
+            <h1 className="font-bold text-[45px] md:text-[50] lg:text-[64] leading-[100%] w-full text-center mt-10">
+              Logo
+            </h1>
+            <a
+              href="/assets/NL1k.png"
+              target="__blank"
+              rel="norel noreferrer"
+            >
+              <Image
+                src={NL}
+                alt="NL Logo"
+                className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto mb-5 mt-8"
+              />
+            </a>
           </div>
         </div>
       </main>
