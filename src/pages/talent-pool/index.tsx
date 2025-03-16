@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Layout } from "../../components/layout/Layout";
 import Card from "@/components/Talent-Pool/Card";
+import Modal from "@/components/Talent-Pool/Modal";
 
 // Types
 type Skill = {
@@ -111,6 +112,19 @@ export default function TalentPool() {
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  // Modal state
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (member: Member) => {
+    setSelectedMember(member);
+    setIsModalOpen(true);
+  };
+  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   // Filter members based on search term and filters
   useEffect(() => {
     let result = members;
@@ -195,10 +209,18 @@ export default function TalentPool() {
             <h2 className="text-2xl font-bold mb-6">Talent Pool</h2>
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
                 {filteredMembers.map(member => (
-                    <Card key={member.id} member={member} />
+                    <Card key={member.id} member={member} onClick={handleOpenModal} />
                 ))}
             </div>
         </section>
+
+        {selectedMember && (
+            <Modal
+                member={selectedMember}
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+          />
+        )}
       </main>
     </Layout>
   );

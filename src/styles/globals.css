@@ -74,3 +74,12 @@ body {
   display: block;
   animation: shake 4s ease-in-out infinite;
 }
+
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-scale-up {
+  animation: scale-up 0.2s ease-out forwards;
+}

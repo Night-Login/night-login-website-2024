@@ -24,9 +24,10 @@ type Member = {
 
 interface CardProps {
   member: Member;
+  onClick: (member: Member) => void;
 }
 
-const Card: React.FC<CardProps> = ({ member }) => {
+const Card: React.FC<CardProps> = ({ member, onClick }) => {
   // Function to get skill category color
   const getSkillColor = (category: string) => {
     switch (category) {
@@ -46,7 +47,10 @@ const Card: React.FC<CardProps> = ({ member }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col sm:flex-row">
+    <div 
+        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col sm:flex-row cursor-pointer"
+        onClick={() => onClick(member)}
+    >
       {/* Left side - Large square profile image */}
       <div className="w-full sm:w-1/3 bg-gradient-to-br from-red to-dark-2 relative">
         <div className="w-full h-full">
