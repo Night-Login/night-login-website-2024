@@ -18,9 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
     "/dashboard/request",
     "/dashboard/history",
     "/dashboard/guide",
-    "/dashboard/faq",
-    "/talent-pool",
-    "/wallpapers"
+    "/dashboard/faq"
   ];
   useEffect(() => {
     AOS.init({

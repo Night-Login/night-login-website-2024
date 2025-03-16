@@ -64,15 +64,69 @@ export default function Wallpapers() {
                   className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
                 />
               </a>
-              {/* ...other images... */}
+              <a
+                href="/wallpapers/VBG%20NCSC.png"
+                target="__blank"
+                rel="norel noreferrer"
+              >
+                <Image
+                  src={NCSC}
+                  alt="NCSC Logo"
+                  className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
+                />
+              </a>
+              <a
+                href="/wallpapers/VBG%20NDSC.png"
+                target="__blank"
+                rel="norel noreferrer"
+              >
+                <Image
+                  src={NDSC}
+                  alt="NDSC Logo"
+                  className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
+                />
+              </a>
+              <a
+                href="/wallpapers/VBG%20NGDC.png"
+                target="__blank"
+                rel="norel noreferrer"
+              >
+                <Image
+                  src={NGDC}
+                  alt="NGDC Logo"
+                  className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
+                />
+              </a>
+              <a
+                href="/wallpapers/VBG%20NHCI.png"
+                target="__blank"
+                rel="norel noreferrer"
+              >
+                <Image
+                  src={NHCI}
+                  alt="NHCI Logo"
+                  className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
+                />
+              </a>
+              <a
+                href="/wallpapers/VBG%20NWDC.png"
+                target="__blank"
+                rel="norel noreferrer"
+              >
+                <Image
+                  src={NWDC}
+                  alt="NWDC Logo"
+                  className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto"
+                />
+              </a>
             </div>
             <h1 className="font-bold text-[45px] md:text-[50] lg:text-[64] leading-[100%] w-full text-center mt-10">
               Logo
             </h1>
             <a
               href="/assets/NL1k.png"
-              target="__blank"
-              rel="norel noreferrer"
+              download="NightLogin_Logo.png"
+              rel="noopener noreferrer"
             >
               <Image
                 src={NL}
