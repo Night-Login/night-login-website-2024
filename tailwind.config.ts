@@ -21,6 +21,7 @@ const config: Config = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        jakarta: ["Plus Jakarta Sans", "sans-serif"]
       }
     },
   },

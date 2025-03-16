@@ -1,3 +1,4 @@
+import Chatbot from "@/components/Chatbot";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Landing/Hero";
 import Intro from "@/components/Landing/Intro";
@@ -14,11 +15,12 @@ export default function Home() {
       </Head>
       <main className="bg-neutral-1 w-full min-h-screen flex flex-col justify-center overflow-x-hidden">
         <Hero  />
-        <Intro />
+        <Intro isCompleteVersion={false} />
         <Projects />
         <Solutions />
         <Testimony />
         <Footer />
+        <Chatbot />
       </main>
     </>
   );
