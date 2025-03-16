@@ -2,7 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["api.sandbox.midtrans.com", "iai-captcha.vercel.app"],
     remotePatterns: [
       {
         protocol: "https",
