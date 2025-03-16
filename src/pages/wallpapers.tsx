@@ -124,13 +124,14 @@ export default function Wallpapers() {
               Logo
             </h1>
             <a
+              href="/assets/images/NL1k.png"
               download="NightLogin_Logo.png"
               rel="noopener noreferrer"
             >
               <Image
-                src={NL}
-                alt="NL Logo"
-                className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto mb-5 mt-8"
+              src={NL}
+              alt="NL Logo"
+              className="w-[60px] sm:w-[68px] md:w-[75px] lg:w-[80px] transition hover:scale-[1.1] active:hover:scale-[1.15] h-auto mb-5 mt-8"
               />
             </a>
           </div>
