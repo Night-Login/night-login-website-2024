@@ -11,8 +11,10 @@ import Eye from "@/../../public/assets/images/icons/AiOutlineEye.svg";
 import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg";
 import Link from "next/link";
 import { FormEvent, useState, useEffect } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
+import axios from "axios";
+
+type Token = string;
 
 type FormData = {
   email: string;
@@ -24,11 +26,6 @@ interface InputField extends EventTarget {
   name: string;
   value: string;
 }
-
-const handleSubmit = (event: FormEvent, data: FormData) => {
-  event.preventDefault();
-  // ACTION HERE
-};
 
 export default function UserLoginPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
@@ -77,19 +74,34 @@ export default function UserLoginPage() {
     if (formData.captcha !== captchaAnswer) {
       alert("Invalid CAPTCHA, please try again.");
       fetchCaptcha();
+      setCaptchaAnswer("");
       return;
     }
-    // Proceed with login logic
-    // ACTION HERE
+    axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
+    .then((res) => {
+      const token: Token = res.data.token;
+
+      if (token.length === 0) {
+        alert("Login failed");
+        return;
+      } else {
+        alert("Login succeeded");
+        localStorage.setItem("token", token);
+        router.replace("/dashboard");
+      }
+    })
+    .catch((err) => {
+      alert("Login failed");
+      console.log(err);
+    });
   };
 
-  
   const { data: session, status } = useSession();
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard"); // Redirect to /dashboard upon successful sign-in
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return (
@@ -188,8 +200,24 @@ export default function UserLoginPage() {
           <div className="flex flex-col gap-4">
             <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
             <div className="flex items-center gap-4">
-              <img src={captchaImage} alt="Captcha" className="w-[200px] h-[50px]" width={200} height={50}/>
-              <button type="button" onClick={fetchCaptcha} className="text-blue-500 underline">Refresh</button>
+              {captchaImage === "" ? (
+                <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
+              ) : (
+                <Image
+                  src={captchaImage}
+                  alt="Captcha"
+                  className="w-[200px] h-[50px]"
+                  width={200}
+                  height={50}
+                />
+              )}
+              <button
+                type="button"
+                onClick={fetchCaptcha}
+                className="text-blue-500 underline"
+              >
+                Refresh
+              </button>
             </div>
             <input
               className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
@@ -198,7 +226,7 @@ export default function UserLoginPage() {
               required
               name="captcha"
               value={captcha}
-              onChange={e => handleFormChange(e.target)}
+              onChange={(e) => handleFormChange(e.target)}
             />
           </div>
           <button
@@ -208,6 +236,7 @@ export default function UserLoginPage() {
             Login
           </button>
           <button
+            type="button"
             onClick={handleClick}
             className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2"
           >
@@ -219,6 +248,7 @@ export default function UserLoginPage() {
             <a className="w-full font-semibold">Sign In with Google</a>
           </button>
           <button
+            type="button"
             onClick={handleGithub}
             className="bg-neutral-2 transition-colors hover:bg-neutral-200 text-dark-1 py-2 rounded-md flex px-2"
           >

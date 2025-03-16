@@ -2,8 +2,22 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost', 'https://iai-captcha.vercel.app'],
+    domains: ["api.sandbox.midtrans.com", "iai-captcha.vercel.app"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.sandbox.midtrans.com",
+        port: "",
+        pathname: "/*",
+      },
+      {
+        protocol: "https",
+        hostname: "iai-captcha.vercel.app",
+        port: "",
+        pathname: "/captchas/*",
+      },
+    ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

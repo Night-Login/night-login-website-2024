@@ -1,11 +1,12 @@
 import Image from "next/image";
 import NLBot from "./../../public/assets/images/NLBot.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {}
 
 export default function Chatbot({}: Props) {
   const [open, setOpen] = useState(false);
+
   return (
     <main className="fixed bottom-[140px] right-[40px] z-[1]">
       <div className="relative">
@@ -22,7 +23,11 @@ export default function Chatbot({}: Props) {
             (open ? "h-[550px]" : "h-0")
           }
         >
-          <iframe src="http://4.246.226.161/chat/660c9cec8fc9991af06b2ddf" className="w-full h-[550px]"></iframe>
+          {/*
+            DEV 
+            <iframe src="http://4.246.226.161/chat/660c9cec8fc9991af06b2ddf" className="w-full h-[550px]"></iframe> 
+          */}
+          <iframe src="https://ai.dundorma.dev/chat/660c9cec8fc9991af06b2ddf" className="w-full h-[550px]"></iframe> 
         </div>
       </div>
     </main>
