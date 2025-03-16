@@ -124,7 +124,7 @@ export default function Wallpapers() {
               Logo
             </h1>
             <a
-              href="/assets/images/NL1k.png"
+              href="/logo/NL1k.png"
               download="NightLogin_Logo.png"
               rel="noopener noreferrer"
             >
