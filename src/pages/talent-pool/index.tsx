@@ -24,6 +24,8 @@ type Member = {
   linkedin?: string;
   github?: string;
   portfolio?: string;
+  educationLevel?: "bachelors" | "masters" | "doctor";
+  isCertified?: boolean;
 };
 
 // Mock data (replace with actual data from API/database)
@@ -47,6 +49,8 @@ const MEMBERS: Member[] = [
         photo: "/assets/images/photos/Giga.jpg",
         role: "AI/ML Specialist",
         batch: "2022",
+        educationLevel: "bachelors",
+        isCertified: true,
         skills: [
             { id: 7, name: "TensorFlow", category: "ai-ml" },
             { id: 8, name: "PyTorch", category: "ai-ml" }
@@ -61,6 +65,8 @@ const MEMBERS: Member[] = [
         photo: "/assets/images/photos/Giga.jpg",
         role: "Full Stack Developer",
         batch: "2023",
+        educationLevel: "masters",
+        isCertified: false,
         skills: [
             { id: 1, name: "React", category: "frontend" },
             { id: 2, name: "Next.js", category: "frontend" },

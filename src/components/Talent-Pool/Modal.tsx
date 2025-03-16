@@ -1,51 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
-
-// Types
-type Skill = {
-  id: number;
-  name: string;
-  category: "frontend" | "backend" | "mobile" | "ai-ml" | "design" | "other";
-};
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  link?: string;
-  image?: string;
-};
-
-type Organization = {
-  id: number;
-  name: string;
-  role: string;
-  period: string;
-};
-
-type Grade = {
-  subject: string;
-  grade: string;
-  semester: string;
-};
-
-type Member = {
-  id: number;
-  name: string;
-  photo: string;
-  role: string;
-  batch: string;
-  skills: Skill[];
-  description: string;
-  email: string;
-  linkedin?: string;
-  github?: string;
-  portfolio?: string;
-  projects?: Project[];
-  organizations?: Organization[];
-  grades?: Grade[];
-};
+import { 
+    Member, 
+    Skill, 
+    dummyProjects, 
+    dummyOrganizations, 
+    dummyGrades 
+  } from "@/data/dummy/TalentData";
 
 interface ModalProps {
   member: Member;
@@ -134,54 +96,9 @@ const Modal: React.FC<ModalProps> = ({ member, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   // Sample data for new sections (replace with actual data from member)
-  const projects = member.projects || [
-    {
-      id: 1,
-      title: "Night Login Website",
-      description: "Developed the main organization website using Next.js and Tailwind CSS.",
-      link: "https://nightlogin.org",
-      image: "/assets/images/projects/FindIT2023.jpg"
-    },
-    {
-      id: 2,
-      title: "Student Management System",
-      description: "Built a comprehensive platform for managing student data and academic progress.",
-      link: "https://github.com/nightlogin/student-system"
-    }
-  ];
-
-  const organizations = member.organizations || [
-    {
-      id: 1,
-      name: "Night Login",
-      role: "Web Developer",
-      period: "2023 - Present"
-    },
-    {
-      id: 2,
-      name: "Competitive Programming Club",
-      role: "Member",
-      period: "2022 - Present"
-    }
-  ];
-
-  const grades = member.grades || [
-    {
-      subject: "Data Structures & Algorithms",
-      grade: "A",
-      semester: "Fall 2023"
-    },
-    {
-      subject: "Web Programming",
-      grade: "A",
-      semester: "Spring 2023"
-    },
-    {
-      subject: "Database Systems",
-      grade: "A-",
-      semester: "Fall 2022"
-    }
-  ];
+  const projects = member.projects || dummyProjects;
+  const organizations = member.organizations || dummyOrganizations;
+  const grades = member.grades || dummyGrades;
 
   // Using createPortal to render modal at the end of the document body
   return createPortal(
