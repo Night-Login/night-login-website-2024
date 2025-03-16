@@ -34,6 +34,11 @@ export default function Navbar() {
           active={router.pathname === "/projects"}
           title="Projects"
         />
+        <MenuLink
+          href="/talent-pool"
+          active={router.pathname === "/talent-pool"}
+          title="Talent Pool"
+        />
         <Link
           href="/requests/login"
           className="px-[25px] py-[5px] xl:py-[10px] transition bg-red hover:bg-opacity-90 rounded-full "
@@ -84,6 +89,11 @@ export default function Navbar() {
             href="/projects"
             active={router.pathname === "/projects"}
             title="Projects"
+          />
+          <MenuLink
+            href="/talent-pool"
+            active={router.pathname === "/talent-pool"}
+            title="Talent Pool"
           />
           <Link
             href="/requests/login"
