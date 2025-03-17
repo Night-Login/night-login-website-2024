@@ -2,7 +2,7 @@
 export type Skill = {
     id: number;
     name: string;
-    category: "frontend" | "backend" | "mobile" | "ai-ml" | "design" | "other";
+    category: "frontend" | "backend" | "mobile" | "ai-ml" | "game-dev" | "cybersecurity" | "devops" | "web3" | "design" | "other";
   };
   
   export type Project = {
@@ -44,6 +44,20 @@ export type Skill = {
     educationLevel?: "bachelors" | "masters" | "doctor";
     isCertified?: boolean;
   };
+
+  // Dummy Skills data
+  export const dummySkills: Skill[] = [
+    { id: 1, name: "React", category: "frontend" },
+    { id: 2, name: "Next.js", category: "frontend" },
+    { id: 3, name: "Node.js", category: "backend" },
+    { id: 4, name: "Express", category: "backend" },
+    { id: 5, name: "Flutter", category: "mobile" },
+    { id: 6, name: "React Native", category: "mobile" },
+    { id: 7, name: "TensorFlow", category: "ai-ml" },
+    { id: 8, name: "PyTorch", category: "ai-ml" },
+    { id: 9, name: "Figma", category: "design" },
+    { id: 10, name: "UI/UX Design", category: "design" },
+  ];
   
   // Dummy projects data
   export const dummyProjects: Project[] = [
@@ -166,3 +180,4 @@ export type Skill = {
             github: "github.com/zakong"
         },
     ];
+

@@ -4,29 +4,7 @@ import Image from "next/image";
 import { Layout } from "../../components/layout/Layout";
 import Card from "@/components/Talent-Pool/Card";
 import Modal from "@/components/Talent-Pool/Modal";
-
-// Types
-type Skill = {
-  id: number;
-  name: string;
-  category: "frontend" | "backend" | "mobile" | "ai-ml" | "design" | "other";
-};
-
-type Member = {
-  id: number;
-  name: string;
-  photo: string;
-  role: string;
-  batch: string;
-  skills: Skill[];
-  description: string;
-  email: string;
-  linkedin?: string;
-  github?: string;
-  portfolio?: string;
-  educationLevel?: "bachelors" | "masters" | "doctor";
-  isCertified?: boolean;
-};
+import { Member, Skill } from "@/data/dummy/TalentData";
 
 // Mock data (replace with actual data from API/database)
 const SKILLS: Skill[] = [

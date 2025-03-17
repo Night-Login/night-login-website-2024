@@ -8,6 +8,12 @@ import {
     dummyOrganizations, 
     dummyGrades 
   } from "@/data/dummy/TalentData";
+  import Chips, { 
+    getSkillVariant, 
+    getEducationVariant, 
+    getEducationLabel,
+    getGradeVariant
+  } from "./Chips";
 
 interface ModalProps {
   member: Member;
@@ -131,16 +137,23 @@ const Modal: React.FC<ModalProps> = ({ member, isOpen, onClose }) => {
               priority
             />
             <div className="absolute top-4 left-4">
-              <span className="bg-dark-2 text-white text-xs px-3 py-1 rounded-full">
-                Batch {member.batch}
-              </span>
+            <Chips text={`Batch ${member.batch}`} variant="batch" size="xs" />
             </div>
+
+            {member.isCertified && (
+            <div className="absolute top-4 right-4">
+                <Chips text="NL Certified" variant="nl-certified-alt" size="xs" />
+            </div>
+            )}
           </div>
           
           {/* Profile info */}
           <div className="p-6 flex-grow flex flex-col">
             <h2 className="text-2xl font-bold text-white mb-1">{member.name}</h2>
-            <p className="text-white/80 mb-4">{member.role}</p>
+            <p className="text-white/80 mb-2">{member.role}</p>
+            <div className="mb-2">
+                <Chips key={member.educationLevel} text={getEducationLabel(member.educationLevel)} variant={getEducationVariant(member.educationLevel)} size="md" />
+            </div>
             
             <div className="mb-6">
               <h3 className="text-white/90 text-sm font-medium mb-2">Connect</h3>

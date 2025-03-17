@@ -1,28 +1,7 @@
 import Image from "next/image";
 import React from "react";
-
-// Types
-type Skill = {
-  id: number;
-  name: string;
-  category: "frontend" | "backend" | "mobile" | "ai-ml" | "design" | "other";
-};
-
-type Member = {
-  id: number;
-  name: string;
-  photo: string;
-  role: string;
-  batch: string;
-  skills: Skill[];
-  description: string;
-  email: string;
-  linkedin?: string;
-  github?: string;
-  portfolio?: string;
-  educationLevel?: "bachelors" | "masters" | "doctor";
-  isCertified?: boolean;
-};
+import Chips, { getEducationVariant, getEducationLabel, getSkillVariant } from "./Chips";
+import { Member } from "@/data/dummy/TalentData";
 
 interface CardProps {
   member: Member;
@@ -30,47 +9,6 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ member, onClick }) => {
-  // Function to get skill category color
-  const getSkillColor = (category: string) => {
-    switch (category) {
-      case "frontend":
-        return "bg-blue-100 text-blue-800";
-      case "backend":
-        return "bg-purple-100 text-purple-800";
-      case "mobile":
-        return "bg-green-100 text-green-800";
-      case "ai-ml":
-        return "bg-yellow-100 text-yellow-800";
-      case "design":
-        return "bg-pink-100 text-pink-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
-  };
-
-  // Function to get education level label and colors
-  const getEducationBadge = () => {
-    if (!member.educationLevel) return null;
-    
-    const styles = {
-      bachelors: "bg-blue-100 text-blue-800",
-      masters: "bg-purple-100 text-purple-800",
-      doctor: "bg-red-100 text-red-800"
-    };
-    
-    const labels = {
-      bachelors: "Bachelor's",
-      masters: "Master's",
-      doctor: "PhD"
-    };
-    
-    return (
-      <span className={`${styles[member.educationLevel]} text-xs px-2.5 py-1 rounded-full ml-2`}>
-        {labels[member.educationLevel]}
-      </span>
-    );
-  };
-
   return (
     <div 
         className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col sm:flex-row cursor-pointer"
@@ -88,13 +26,17 @@ const Card: React.FC<CardProps> = ({ member, onClick }) => {
             style={{ aspectRatio: "1/1" }}
           />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-            <div className="flex flex-col gap-2 items-start">
-                {getEducationBadge()}
-                <span className="bg-dark-2 text-white text-xs px-3 py-1 rounded-full">
-                    Batch {member.batch}
-                </span>
+            <div className="flex flex-wrap gap-2 items-center">
+              <Chips text={`Batch ${member.batch}`} variant="batch" size="xs" />
+              {member.educationLevel && (
+                <Chips 
+                  text={getEducationLabel(member.educationLevel)} 
+                  variant={getEducationVariant(member.educationLevel)} 
+                  size="xs" 
+                />
+              )}
             </div>
-        </div>
+          </div>
         </div>
       </div>
       
@@ -107,12 +49,7 @@ const Card: React.FC<CardProps> = ({ member, onClick }) => {
           </div>
           {member.isCertified && (
             <div className="hidden sm:block">
-              <div className="bg-red/10 text-red text-xs font-medium px-2.5 py-1 rounded-full flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                NL Certified
-              </div>
+              <Chips text="NL Certified" variant="nl-certified" size="xs" />
             </div>
           )}
         </div>
@@ -124,12 +61,12 @@ const Card: React.FC<CardProps> = ({ member, onClick }) => {
           <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase">Skills</h4>
           <div className="flex flex-wrap gap-2">
             {member.skills.map((skill) => (
-              <span 
+            <Chips 
                 key={skill.id}
-                className={`px-2.5 py-1 text-xs font-medium rounded-full ${getSkillColor(skill.category)}`}
-              >
-                {skill.name}
-              </span>
+                text={skill.name}
+                variant={skill.category as any}
+                size="xs"
+            />
             ))}
           </div>
         </div>
