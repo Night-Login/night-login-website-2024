@@ -7,16 +7,18 @@ import DecoNLLogo from "@/../../public/assets/images/DecoNLLogo.svg";
 import Eye from "@/../../public/assets/images/icons/AiOutlineEye.svg";
 import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg";
 import Link from "next/link";
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type FormData = {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
-  captcha: string;
 }
 
 interface InputField extends EventTarget {
@@ -28,41 +30,55 @@ export default function UserRegisterPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [isPassHidden, setIsPassHidden] = useState<boolean>(true);
   const [isConfirmPassHidden, setIsConfirmPassHidden] = useState<boolean>(true);
-  const [captchaImage, setCaptchaImage] = useState<string>("");
-  const [captchaAnswer, setCaptchaAnswer] = useState<string>("");
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-    captcha: ""
   });
   const router = useRouter();
 
-  const handleSubmit = (event: FormEvent, data:FormData) => {
+  const handleSubmit = async (event: FormEvent, data: FormData) => {
     event.preventDefault();
-    if(data.password !== data.confirmPassword) {
-      alert("Password does not match");
+    if (data.password !== data.confirmPassword) {
+      toast.error("Passwords do not match. Please try again.");
       return;
     }
     console.log(formData);
-    if (formData.captcha !== captchaAnswer) {
-      alert("Invalid CAPTCHA, please try again.");
-      fetchCaptcha();
-      setCaptchaAnswer("");
-      return;
-    }
-    axios
-    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register", data)
-    .then((res) => {
-      alert("Registration succeeded, you can now login");
-      console.log(res.data);
-      router.push("/requests/login");
-    })
-    .catch((err) => {
-      alert("Registration failed");
+
+    try {
+      // Register the user
+      const response = await axios.post(
+        process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register",
+        data
+      );
+
+      console.log(response.data);
+      toast.success("Registration successful! Signing you in...");
+
+      // Automatically sign in the user after successful registration
+      const signInResult = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (signInResult?.ok) {
+        // Redirect to dashboard after successful sign-in
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 1500);
+      } else {
+        // If auto sign-in fails, redirect to login page
+        toast.info("Please log in with your new account.");
+        setTimeout(() => {
+          router.push("/requests/login");
+        }, 2000);
+      }
+    } catch (err) {
+      toast.error("Registration failed. Please try again.");
       console.log(err);
-    });
+    }
   };
 
   const handleFormChange = (target: InputField) => {
@@ -72,21 +88,8 @@ export default function UserRegisterPage() {
       [name]: value
     });
   };
-  const {name, email, password, confirmPassword, captcha} = formData;
-
-  const fetchCaptcha = async () => {
-    try {
-      const response = await axios.get("https://iai-captcha.vercel.app/captcha");
-      setCaptchaImage(`https://iai-captcha.vercel.app${response.data.image}`);
-      setCaptchaAnswer(response.data.answer);
-    } catch (error) {
-      console.error("Failed to fetch captcha:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCaptcha();
-  }, []);
+  
+  const { name, email, password, confirmPassword } = formData;
 
 
   return (
@@ -241,37 +244,23 @@ export default function UserRegisterPage() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
-            <div className="flex items-center gap-4">
-            {captchaImage === "" ? (
-                <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
-              ) : (
-                <Image
-                  src={captchaImage}
-                  alt="Captcha"
-                  className="w-[200px] h-[50px]"
-                  width={200}
-                  height={50}
-                />
-              )}
-              <button type="button" onClick={fetchCaptcha} className="text-blue-500 underline">Refresh</button>
-            </div>
-            <input
-              className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
-              type="text"
-              placeholder="Enter CAPTCHA"
-              required
-              name="captcha"
-              value={captcha}
-              onChange={e => handleFormChange(e.target)}
-            />
-          </div>
           <button type="submit" className="bg-red text-neutral-1 py-2 rounded-md transition-colors hover:bg-rose-700 active:bg-rose-600">
             Register
           </button>
         </form>
       </section>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
   );
 }

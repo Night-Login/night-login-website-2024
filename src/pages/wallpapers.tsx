@@ -45,6 +45,8 @@ export default function Wallpapers() {
               href="/wallpapers/VBG%20NL.png"
               target="__blank"
               rel="norel noreferrer"
+              aria-label="Download Night Login wallpaper"
+              title="Download Night Login wallpaper"
             >
               <Image
                 src={NL}
@@ -57,6 +59,8 @@ export default function Wallpapers() {
                 href="/wallpapers/VBG%20NADC.png"
                 target="__blank"
                 rel="norel noreferrer"
+                aria-label="Download NADC wallpaper"
+                title="Download NADC wallpaper"
               >
                 <Image
                   src={NADC}
@@ -68,6 +72,8 @@ export default function Wallpapers() {
                 href="/wallpapers/VBG%20NCSC.png"
                 target="__blank"
                 rel="norel noreferrer"
+                aria-label="Download NCSC wallpaper"
+                title="Download NCSC wallpaper"
               >
                 <Image
                   src={NCSC}
@@ -79,6 +85,8 @@ export default function Wallpapers() {
                 href="/wallpapers/VBG%20NDSC.png"
                 target="__blank"
                 rel="norel noreferrer"
+                aria-label="Download NDSC wallpaper"
+                title="Download NDSC wallpaper"
               >
                 <Image
                   src={NDSC}
@@ -90,6 +98,8 @@ export default function Wallpapers() {
                 href="/wallpapers/VBG%20NGDC.png"
                 target="__blank"
                 rel="norel noreferrer"
+                aria-label="Download NGDC wallpaper"
+                title="Download NGDC wallpaper"
               >
                 <Image
                   src={NGDC}
@@ -101,6 +111,8 @@ export default function Wallpapers() {
                 href="/wallpapers/VBG%20NHCI.png"
                 target="__blank"
                 rel="norel noreferrer"
+                aria-label="Download NHCI wallpaper"
+                title="Download NHCI wallpaper"
               >
                 <Image
                   src={NHCI}
@@ -112,6 +124,8 @@ export default function Wallpapers() {
                 href="/wallpapers/VBG%20NWDC.png"
                 target="__blank"
                 rel="norel noreferrer"
+                aria-label="Download NWDC wallpaper"
+                title="Download NWDC wallpaper"
               >
                 <Image
                   src={NWDC}
@@ -127,6 +141,8 @@ export default function Wallpapers() {
               href="/logo/NL1k.png"
               download="NightLogin_Logo.png"
               rel="noopener noreferrer"
+              aria-label="Download Night Login logo"
+              title="Download Night Login logo"
             >
               <Image
               src={NL}

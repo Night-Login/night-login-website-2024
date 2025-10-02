@@ -1,59 +1,64 @@
 import QRISLogo from "@/../public/assets/images/QRISLogo.png";
 import Logo from "@/../public/assets/images/Logo.png";
 import Image from "next/image";
-import axios from "axios";
 import { useState } from "react";
+import { api } from "@/lib/api";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PaymentPage = () => {
   const [qrUrl, setQrUrl] = useState("");
   const [qrGenerated, setQrGenerated] = useState(false);
 
-  const handlePayment = () => {
-    axios
-      .post(
-        process.env.NEXT_PUBLIC_BACKEND_URL +
-          "/api/v1/transaction/create-payment",
-        {
-          orderId: localStorage.getItem("orderId")
-        },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        setQrUrl(res.data.qrLink);
-        setQrGenerated(true);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        setQrUrl("error");
-        setQrGenerated(false);
-        console.log(err);
+  const handlePayment = async () => {
+    try {
+      // Get orderId from sessionStorage (stored during request submission)
+      const orderId = sessionStorage.getItem("orderId");
+      
+      if (!orderId) {
+        toast.error("Order ID not found. Please submit a request first.");
+        return;
+      }
+
+      const response = await api.post("/api/v1/transaction/create-payment", {
+        orderId,
       });
+
+      console.log(response);
+      setQrUrl(response.qrLink);
+      setQrGenerated(true);
+    } catch (err) {
+      setQrUrl("error");
+      setQrGenerated(false);
+      console.error(err);
+      toast.error("Failed to generate QR code. Please try again.");
+    }
   };
 
-  const handleStatusCheck = () => {
-    const orderId = localStorage.getItem("orderId");
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/transaction/check-payment?orderId=${orderId}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        if (res.status == 200) {
-          alert("Payment Success");
-        } else {
-          alert("Payment not yet completed!");
-        }
-      })
-      .catch((err) => {
-        alert("Payment not yet completed!");
-        console.log(err);
-      });
+  const handleStatusCheck = async () => {
+    try {
+      const orderId = sessionStorage.getItem("orderId");
+      
+      if (!orderId) {
+        toast.error("Order ID not found.");
+        return;
+      }
+
+      const response = await api.get(
+        `/api/v1/transaction/check-payment?orderId=${orderId}`
+      );
+
+      console.log(response);
+      toast.success("Payment successful!");
+    } catch (err: any) {
+      // Check if it's a 404 or payment not completed
+      if (err.response?.status === 404 || err.response?.status === 400) {
+        toast.warning("Payment not yet completed. Please complete the payment.");
+      } else {
+        toast.error("Failed to check payment status. Please try again.");
+      }
+      console.error(err);
+    }
   };
 
   return (
@@ -106,6 +111,18 @@ const PaymentPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
