@@ -12,14 +12,12 @@ import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg
 import Link from "next/link";
 import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 type FormData = {
   email: string;
   password: string;
-  captcha: string;
 };
 
 interface InputField extends EventTarget {
@@ -30,14 +28,12 @@ interface InputField extends EventTarget {
 export default function UserLoginPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [isPassHidden, setIsPassHidden] = useState<boolean>(true);
-  const [captchaImage, setCaptchaImage] = useState<string>("");
-  const [captchaAnswer, setCaptchaAnswer] = useState<string>("");
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
-    captcha: "",
   });
+  
   const handleFormChange = (target: InputField) => {
     const { name, value } = target;
     setFormData({
@@ -45,17 +41,8 @@ export default function UserLoginPage() {
       [name]: value,
     });
   };
-  const { email, password, captcha } = formData;
-
-  const fetchCaptcha = async () => {
-    try {
-      const response = await axios.get("https://iai-captcha.vercel.app/captcha");
-      setCaptchaImage(`https://iai-captcha.vercel.app${response.data.image}`);
-      setCaptchaAnswer(response.data.answer);
-    } catch (error) {
-      console.error("Failed to fetch captcha:", error);
-    }
-  };
+  
+  const { email, password } = formData;
 
   const handleClick = async () => {
     await signIn("google", { callbackUrl: "/dashboard" });
@@ -65,18 +52,8 @@ export default function UserLoginPage() {
     await signIn("github", { callbackUrl: "/dashboard" });
   };
 
-  useEffect(() => {
-    fetchCaptcha();
-  }, []);
-
   const handleSubmit = async (event: FormEvent, data: FormData) => {
     event.preventDefault();
-    if (formData.captcha !== captchaAnswer) {
-      toast.error("Invalid CAPTCHA, please try again.");
-      fetchCaptcha();
-      setCaptchaAnswer("");
-      return;
-    }
 
     try {
       // Use NextAuth signIn with credentials provider
@@ -202,38 +179,6 @@ export default function UserLoginPage() {
                 )}
               </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
-            <div className="flex items-center gap-4">
-              {captchaImage === "" ? (
-                <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
-              ) : (
-                <Image
-                  src={captchaImage}
-                  alt="Captcha"
-                  className="w-[200px] h-[50px]"
-                  width={200}
-                  height={50}
-                />
-              )}
-              <button
-                type="button"
-                onClick={fetchCaptcha}
-                className="text-blue-500 underline"
-              >
-                Refresh
-              </button>
-            </div>
-            <input
-              className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
-              type="text"
-              placeholder="Enter CAPTCHA"
-              required
-              name="captcha"
-              value={captcha}
-              onChange={(e) => handleFormChange(e.target)}
-            />
           </div>
           <button
             type="submit"

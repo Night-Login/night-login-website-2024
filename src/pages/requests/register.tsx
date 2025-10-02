@@ -7,7 +7,7 @@ import DecoNLLogo from "@/../../public/assets/images/DecoNLLogo.svg";
 import Eye from "@/../../public/assets/images/icons/AiOutlineEye.svg";
 import EyeOff from "@/../../public/assets/images/icons/AiOutlineEyeInvisible.svg";
 import Link from "next/link";
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
@@ -19,7 +19,6 @@ type FormData = {
   email: string;
   password: string;
   confirmPassword: string;
-  captcha: string;
 }
 
 interface InputField extends EventTarget {
@@ -31,14 +30,11 @@ export default function UserRegisterPage() {
   const [isBtnHovered, setIsBtnHovered] = useState<boolean>(false);
   const [isPassHidden, setIsPassHidden] = useState<boolean>(true);
   const [isConfirmPassHidden, setIsConfirmPassHidden] = useState<boolean>(true);
-  const [captchaImage, setCaptchaImage] = useState<string>("");
-  const [captchaAnswer, setCaptchaAnswer] = useState<string>("");
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-    captcha: ""
   });
   const router = useRouter();
 
@@ -49,12 +45,6 @@ export default function UserRegisterPage() {
       return;
     }
     console.log(formData);
-    if (formData.captcha !== captchaAnswer) {
-      toast.error("Invalid CAPTCHA, please try again.");
-      fetchCaptcha();
-      setCaptchaAnswer("");
-      return;
-    }
 
     try {
       // Register the user
@@ -98,21 +88,8 @@ export default function UserRegisterPage() {
       [name]: value
     });
   };
-  const {name, email, password, confirmPassword, captcha} = formData;
-
-  const fetchCaptcha = async () => {
-    try {
-      const response = await axios.get("https://iai-captcha.vercel.app/captcha");
-      setCaptchaImage(`https://iai-captcha.vercel.app${response.data.image}`);
-      setCaptchaAnswer(response.data.answer);
-    } catch (error) {
-      console.error("Failed to fetch captcha:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCaptcha();
-  }, []);
+  
+  const { name, email, password, confirmPassword } = formData;
 
 
   return (
@@ -266,32 +243,6 @@ export default function UserRegisterPage() {
                 )}
               </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <label className="font-semibold text-[16px] lg:text-[20px]">Captcha</label>
-            <div className="flex items-center gap-4">
-            {captchaImage === "" ? (
-                <div className="w-[200px] h-[50px] bg-slate-300 animate-pulse" />
-              ) : (
-                <Image
-                  src={captchaImage}
-                  alt="Captcha"
-                  className="w-[200px] h-[50px]"
-                  width={200}
-                  height={50}
-                />
-              )}
-              <button type="button" onClick={fetchCaptcha} className="text-blue-500 underline">Refresh</button>
-            </div>
-            <input
-              className="w-full bg-[#F3F3F3] px-8 py-4 rounded-lg focus:outline-none"
-              type="text"
-              placeholder="Enter CAPTCHA"
-              required
-              name="captcha"
-              value={captcha}
-              onChange={e => handleFormChange(e.target)}
-            />
           </div>
           <button type="submit" className="bg-red text-neutral-1 py-2 rounded-md transition-colors hover:bg-rose-700 active:bg-rose-600">
             Register
