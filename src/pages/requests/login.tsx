@@ -13,8 +13,8 @@ import Link from "next/link";
 import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-
-type Token = string;
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type FormData = {
   email: string;
@@ -58,42 +58,48 @@ export default function UserLoginPage() {
   };
 
   const handleClick = async () => {
-    await signIn("google"); // or the name of your provider
+    await signIn("google", { callbackUrl: "/dashboard" });
   };
 
   const handleGithub = async () => {
-    await signIn("github");
+    await signIn("github", { callbackUrl: "/dashboard" });
   };
 
   useEffect(() => {
     fetchCaptcha();
   }, []);
 
-  const handleSubmit = (event: FormEvent, data: FormData) => {
+  const handleSubmit = async (event: FormEvent, data: FormData) => {
     event.preventDefault();
     if (formData.captcha !== captchaAnswer) {
-      alert("Invalid CAPTCHA, please try again.");
+      toast.error("Invalid CAPTCHA, please try again.");
       fetchCaptcha();
       setCaptchaAnswer("");
       return;
     }
-    axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/login", data)
-    .then((res) => {
-      const token: Token = res.data.token;
 
-      if (token.length === 0) {
-        alert("Login failed");
-        return;
-      } else {
-        alert("Login succeeded");
-        localStorage.setItem("token", token);
-        router.replace("/dashboard");
+    try {
+      // Use NextAuth signIn with credentials provider
+      const result = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false, // Don't redirect automatically
+      });
+
+      if (result?.error) {
+        toast.error("Login failed. Please check your credentials.");
+        console.error("Login error:", result.error);
+      } else if (result?.ok) {
+        toast.success("Login successful! Redirecting to dashboard...");
+        // Redirect to dashboard after successful login
+        setTimeout(() => {
+          router.replace("/dashboard");
+        }, 1000);
       }
-    })
-    .catch((err) => {
-      alert("Login failed");
-      console.log(err);
-    });
+    } catch (err) {
+      toast.error("Login failed. Please try again.");
+      console.error("Login error:", err);
+    }
   };
 
   const { data: session, status } = useSession();
@@ -270,6 +276,18 @@ export default function UserLoginPage() {
           </p>
         </form>
       </section>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
   );
 }

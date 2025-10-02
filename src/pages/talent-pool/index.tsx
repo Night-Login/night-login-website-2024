@@ -160,7 +160,13 @@ export default function TalentPool() {
                 </div>
                 
                 <div className="flex gap-4">
+                {/* Accessible label for skill select (visually hidden) */}
+                <label htmlFor="skillSelect" className="sr-only">
+                  Filter by skill
+                </label>
                 <select
+                    id="skillSelect"
+                    aria-label="Filter by skill"
                     className="border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={selectedSkill || ""}
                     onChange={e => setSelectedSkill(e.target.value || null)}
@@ -171,7 +177,13 @@ export default function TalentPool() {
                     ))}
                 </select>
                 
+                {/* Accessible label for category select (visually hidden) */}
+                <label htmlFor="categorySelect" className="sr-only">
+                  Filter by category
+                </label>
                 <select
+                    id="categorySelect"
+                    aria-label="Filter by category"
                     className="border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={selectedCategory || ""}
                     onChange={e => setSelectedCategory(e.target.value || null)}

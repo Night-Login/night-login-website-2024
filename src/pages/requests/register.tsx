@@ -10,6 +10,9 @@ import Link from "next/link";
 import { FormEvent, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type FormData = {
   name: string;
@@ -39,30 +42,53 @@ export default function UserRegisterPage() {
   });
   const router = useRouter();
 
-  const handleSubmit = (event: FormEvent, data:FormData) => {
+  const handleSubmit = async (event: FormEvent, data: FormData) => {
     event.preventDefault();
-    if(data.password !== data.confirmPassword) {
-      alert("Password does not match");
+    if (data.password !== data.confirmPassword) {
+      toast.error("Passwords do not match. Please try again.");
       return;
     }
     console.log(formData);
     if (formData.captcha !== captchaAnswer) {
-      alert("Invalid CAPTCHA, please try again.");
+      toast.error("Invalid CAPTCHA, please try again.");
       fetchCaptcha();
       setCaptchaAnswer("");
       return;
     }
-    axios
-    .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register", data)
-    .then((res) => {
-      alert("Registration succeeded, you can now login");
-      console.log(res.data);
-      router.push("/requests/login");
-    })
-    .catch((err) => {
-      alert("Registration failed");
+
+    try {
+      // Register the user
+      const response = await axios.post(
+        process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/user/register",
+        data
+      );
+
+      console.log(response.data);
+      toast.success("Registration successful! Signing you in...");
+
+      // Automatically sign in the user after successful registration
+      const signInResult = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (signInResult?.ok) {
+        // Redirect to dashboard after successful sign-in
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 1500);
+      } else {
+        // If auto sign-in fails, redirect to login page
+        toast.info("Please log in with your new account.");
+        setTimeout(() => {
+          router.push("/requests/login");
+        }, 2000);
+      }
+    } catch (err) {
+      toast.error("Registration failed. Please try again.");
       console.log(err);
-    });
+    }
   };
 
   const handleFormChange = (target: InputField) => {
@@ -272,6 +298,18 @@ export default function UserRegisterPage() {
           </button>
         </form>
       </section>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
   );
 }

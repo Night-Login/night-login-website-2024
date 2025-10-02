@@ -4,8 +4,11 @@ import AboutUsDeco from "@/../public/assets/images/AboutUsDeco.svg";
 import FormInput from "@/components/Dashboard/FormInput";
 import { useState } from "react";
 import Button from "@/components/Button";
-import axios from "axios";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { api } from "@/lib/api";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DashboardRequest() {
   const [name, setName] = useState("");
@@ -15,30 +18,29 @@ export default function DashboardRequest() {
   const [budget, setBudget] = useState("");
   const router = useRouter();
 
-  const handleSubmit = () => {
-    axios
-      .post(
-        process.env.NEXT_PUBLIC_BACKEND_URL + "/api/v1/transaction/create",
-        {
-          projectName,
-          projectDescription: description,
-          projectObjective: objective,
-          projectBudget: budget
-        },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-        }
-      )
-      .then((res) => {
-        alert("Request submitted");
-        localStorage.setItem("orderId", res.data.orderId);
-        router.replace("/requests/payment"); 
-        console.log(res.data);
-      })
-      .catch((err) => {
-        alert("Request failed");
-        console.log(err);
+  const handleSubmit = async () => {
+    try {
+      const response = await api.post("/api/v1/transaction/create", {
+        projectName,
+        projectDescription: description,
+        projectObjective: objective,
+        projectBudget: budget,
       });
+
+      toast.success("Request submitted successfully!");
+      
+      // Store orderId in sessionStorage instead of localStorage for better security
+      sessionStorage.setItem("orderId", response.orderId);
+      
+      setTimeout(() => {
+        router.replace("/requests/payment");
+      }, 1500);
+      
+      console.log(response);
+    } catch (err) {
+      toast.error("Request failed. Please try again.");
+      console.error(err);
+    }
   };
 
   return (
@@ -137,6 +139,18 @@ export default function DashboardRequest() {
           />
         </form>
       </main>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </DashboardLayout>
   );
 }

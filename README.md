@@ -38,7 +38,22 @@ Night Login is dedicated to fostering the growth and development of IT skills am
    yarn install
    ```
 
-3. Run the development server
+3. Set up environment variables
+
+   Copy `.env.example` to `.env` and fill in your values:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Required environment variables:
+   - `NEXT_PUBLIC_BACKEND_URL` - Your backend API URL
+   - `NEXTAUTH_SECRET` - Generate with `openssl rand -base64 32`
+   - `NEXTAUTH_URL` - Your app URL (<http://localhost:3000> for dev)
+   - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` - From Google Cloud Console
+   - `GITHUB_ID` and `GITHUB_SECRET` - From GitHub Developer Settings
+
+4. Run the development server
 
    ```bash
    npm run dev
@@ -46,7 +61,17 @@ Night Login is dedicated to fostering the growth and development of IT skills am
    yarn dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## ⚠️ Security Notice
+
+**Important:** This project has known security considerations that should be addressed before production deployment:
+
+- JWT tokens are currently stored in `localStorage` which is vulnerable to XSS attacks
+- Token validation in middleware needs enhancement
+- Mixed authentication strategies need to be unified
+
+Please read [SECURITY.md](./SECURITY.md) for detailed security recommendations and best practices before deploying to production.
 
 ## Building for Production
 
