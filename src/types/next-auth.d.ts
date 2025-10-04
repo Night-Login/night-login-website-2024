@@ -8,6 +8,8 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: string;
+      role?: string;
+      onboardingCompleted?: boolean;
     } & DefaultSession["user"];
     accessToken?: string;
   }
@@ -20,6 +22,8 @@ declare module "next-auth" {
     email: string;
     name?: string;
     accessToken?: string;
+    role?: string;
+    onboardingCompleted?: boolean;
   }
 }
 
@@ -30,5 +34,7 @@ declare module "next-auth/jwt" {
   interface JWT {
     id?: string;
     accessToken?: string;
+    role?: string;
+    onboardingCompleted?: boolean;
   }
 }

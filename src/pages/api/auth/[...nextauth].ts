@@ -37,6 +37,8 @@ export const authOptions: NextAuthOptions = {
               email: userData.user?.email || credentials.email,
               name: userData.user?.name || userData.name || credentials.email,
               accessToken: userData.accessToken || userData.token,
+              role: userData.user?.role || "member",
+              onboardingCompleted: userData.user?.onboardingCompleted || false,
             };
           }
 
@@ -96,6 +98,8 @@ export const authOptions: NextAuthOptions = {
             // Store the backend token in the user object
             user.accessToken = response.data.data.accessToken || response.data.data.token;
             user.id = response.data.data.user?.id || response.data.data.userId || user.id;
+            user.role = response.data.data.user?.role || "member";
+            user.onboardingCompleted = response.data.data.user?.onboardingCompleted || false;
             return true;
           }
           
@@ -122,6 +126,8 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.email = user.email;
         token.provider = account?.provider;
+        token.role = user.role;
+        token.onboardingCompleted = user.onboardingCompleted;
       }
       return token;
     },
@@ -131,6 +137,8 @@ export const authOptions: NextAuthOptions = {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
+        session.user.role = token.role as string;
+        session.user.onboardingCompleted = token.onboardingCompleted as boolean;
         session.accessToken = token.accessToken;
       }
       return session;

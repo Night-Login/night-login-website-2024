@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
     "/requests/login",
     "/requests/register",
     "/requests/payment",
+    "/onboarding",
     "/dashboard",
     "/dashboard/request",
     "/dashboard/history",

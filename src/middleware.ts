@@ -15,6 +15,15 @@ export async function middleware(request: NextRequest) {
     "/dashboard/faq",
   ];
 
+  // Public routes that don't need auth
+  const publicRoutes = ["/", "/about", "/projects", "/wallpapers", "/coming-soon", "/talent-pool"];
+  
+  // Auth routes
+  const authRoutes = ["/requests/login", "/requests/register"];
+  
+  // Onboarding route
+  const onboardingRoute = "/onboarding";
+
   // Check if the current path is a protected route
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route)
@@ -34,8 +43,45 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    // Token is valid, allow the request to proceed
+    // Check if user has completed onboarding
+    if (!token.onboardingCompleted && pathname !== onboardingRoute) {
+      // Redirect to onboarding if not completed
+      const onboardingUrl = new URL(onboardingRoute, request.url);
+      return NextResponse.redirect(onboardingUrl);
+    }
+
+    // Token is valid and onboarding complete, allow the request to proceed
     return NextResponse.next();
+  }
+
+  // If user is authenticated and tries to access onboarding but already completed it
+  if (pathname === onboardingRoute) {
+    const token = await getToken({
+      req: request,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
+
+    if (token && token.onboardingCompleted) {
+      // Already completed onboarding, redirect to dashboard
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+  }
+
+  // If user is authenticated and tries to access auth routes
+  if (authRoutes.includes(pathname)) {
+    const token = await getToken({
+      req: request,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
+
+    if (token) {
+      // User is authenticated, check onboarding status
+      if (!token.onboardingCompleted) {
+        return NextResponse.redirect(new URL(onboardingRoute, request.url));
+      } else {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+    }
   }
 
   return NextResponse.next();
